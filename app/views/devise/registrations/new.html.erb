@@ -1,0 +1,46 @@
+<%= flash_messages %>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="left aligned login column">
+    <h2 class="ui header"><%= t('.sign_up') %></h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "ui large form signup"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="ui stacked segment">
+      <div class="field"></div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <input autofocus="autofocus" autocomplete="email" placeholder="Adresse e-mail" type="email" value="<%= resource.email %>" name="user[email]" id="user_email">
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Mot de passe", data: { content: "6 caractères minimum" }, class: "field-popup" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe" %>
+        </div>
+      </div>
+      <div class="terms field">
+        <div class="ui checkbox">
+          <input type="checkbox" tabindex="0" class="hidden" name="terms" id="terms">
+          <label>Accepter les <a href="#" class="show_terms_modal">Conditions Générales d'Utilisation</a></label>
+        </div>
+      </div>
+
+      <%= f.submit t('.sign_up'), :class => "ui fluid large submit button" %>
+    </div>
+  <% end %>
+
+  <div class="ui message">
+    <%= render "devise/shared/links" %>
+  </div>
+
+  <%= render 'terms_modal', approvable: true %>
+</div>

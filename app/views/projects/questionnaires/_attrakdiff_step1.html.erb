@@ -1,0 +1,425 @@
+<div class="ui container <%= "navigable-tabs" if @project.ask_open_ended_questions || @project.ask_respondent_qualification %>">
+
+  <div class="ui segment">
+    <% if @project.ask_open_ended_questions || @project.ask_respondent_qualification %>
+        <div class="ui top right attached small step-counter label"><%= t('.step') %> <span class="current-step"></span>/<span class="total-steps"></span></div>
+    <% end %>
+    <h2 class="form-title"><%= t('.title') + ' "' + @project.product_name + '"' %></h2>
+    <%= form_for(response, :html => {:class => "ui form attrakdiff", :data => { :formtype => "response_attrak_diff" }}) do |f| %>
+    <div class="ui active huge-radio tab" data-tab="main-form">
+      <div class="ui attrakdiff-grid grid">
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP1_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP1_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="3"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="2"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="1"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="0"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="-1"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="-2"><label></label></div>
+              <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP1]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI1_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI1_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI1]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT1_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT1_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT1]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS1_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS1_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS1]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP2_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP2_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP2]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI2_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI2_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI2]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT2_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT2_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT2]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP3_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP3_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP3]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT3_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT3_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT3]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP4_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP4_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP4]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI3_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI3_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI3]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP5_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP5_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP5]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI4_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI4_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI4]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI5_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI5_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI5]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI6_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI6_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI6]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHI7_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHI7_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHI7]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT4_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT4_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT4]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS2_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS2_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS2]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT5_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT5_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT5]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP6_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP6_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP6]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT6_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT6_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT6]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS3_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS3_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS3]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS4_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS4_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS4]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS5_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS5_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS5]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS6_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS6_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS6]" value="3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::ATT7_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::ATT7_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[ATT7]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QHS7_label[I18n.locale][:good] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QHS7_label[I18n.locale][:bad] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QHS7]" value="-3"><label></label></div>
+          </div>
+        </div></div>
+
+        <div class="row"><div class="field column">
+          <div class="label left-label"><%= ResponseAttrakDiff::QP7_label[I18n.locale][:bad] %></div>
+          <div class="label right-label"><%= ResponseAttrakDiff::QP7_label[I18n.locale][:good] %></div>
+          <div class="semantic-differential-scale">
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="-3"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="-2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="-1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="0"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="1"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="2"><label></label></div>
+            <div class="ui fitted radio checkbox"><input type="radio" name="response_attrak_diff[QP7]" value="3"><label></label></div>
+          </div>
+        </div></div>
+      </div>
+
+
+      <div class="ui right aligned container">
+        <% if @project.ask_open_ended_questions %>
+        <div class="ui large button to-open-ended-questions"><%= t('.next') %></div>
+        <% elsif @project.ask_respondent_qualification %>
+        <div class="ui large button to-respondent-qualification"><%= t('.next') %></div>
+        <% else %>
+        <%= f.submit t(".submit"), :class => "ui large submit button" %>
+        <% end %>
+      </div>
+
+    </div>
+
+    <%= render 'projects' + File::SEPARATOR + 'questionnaires' + File::SEPARATOR + 'user_ideas', project: @project, f: f %>
+    <%= render 'projects' + File::SEPARATOR + 'questionnaires' + File::SEPARATOR + 'user_qualification', project: @project, f: f %>
+
+    <input type="hidden" name="uri_token" value="<%= @project.uri_token %>">
+    <input type="hidden" name="response_attrak_diff[f]" value="">
+
+    <% end %>
+  </div>
+</div>

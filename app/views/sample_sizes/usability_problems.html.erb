@@ -1,0 +1,47 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section">Combien d'utilisateurs pour un test ?</h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+<div class="ui container">
+  <h2 class="ui header">Proportion des problèmes d'utilisabilité trouvés en fonction du nombre d'utilisateurs</h2>
+  <div class="ui stackable grid segment">
+    <div class="sixteen wide column">
+      <%= usability_problems_char_for(@proportion.to_f / 100, 18)%>
+    </div>
+    <div class="sixteen wide column">
+      <div class="ui divider"></div>
+      <form class="ui large form">
+        <table class="ui very basic table">
+          <tbody>
+            <tr>
+              <td nowrap><h3>Hypothèse :</h3></td>
+              <td>
+                <span>Chaque utilisateur trouve</span>
+                <div class="ui right labeled small input">
+                  <input class="proportion field" type="number" value="<%= @proportion %>" name="proportion" id="proportion">
+                  <div class="ui basic label">%</div>
+                </div>
+                <span> des problèmes.</span>
+
+              </td>
+              <td><button class="ui large submit button" type="submit">Mettre à jour</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="ui header">Estimateur</h2>
+  <div class="ui segment">
+    z(90%) <%= Distribution::Normal.p_value(1-((1-0.9) / 2)) %><br />
+    z(95%) <%= Distribution::Normal.p_value(1-((1-0.95) / 2)) %><br />
+    z(99%) <%= Distribution::Normal.p_value(1-((1-0.99) / 2)) %><br />
+    z(99.9%) <%= Distribution::Normal.p_value(1-((1-0.999) / 2)) %><br />
+  </div>
+</div>

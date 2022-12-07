@@ -1,0 +1,45 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a href="<%= new_app_notification_path %>" class="ui right floated primary button">Nouvelle notification</a>
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section">Notifications</h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+
+<div class="ui container">
+
+  <h2 class="ui header">Liste des notifications du service</h2>
+
+  <table class="ui table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Titre</th>
+        <th>Ratio lecture</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @app_notifications.each do |app_notification|
+        read_count = app_notification.read_count
+        should_have_read_count = app_notification.should_have_read_count
+        ratio = (((read_count + 0.00)/(should_have_read_count + 0.00)) * 100).round(2)
+      %>
+        <tr>
+          <td><%= l app_notification.date, format: :custom  %></td>
+          <td><%= app_notification.notification_type %></td>
+          <td><%= app_notification.title %></td>
+          <td><%= ratio %>% <small>(<%= read_count %>/<%= should_have_read_count %>)</small></td>
+          <td><%= link_to 'Modifier', edit_app_notification_path(app_notification) %></td>
+          <td><%= button_to 'Supprimer', app_notification, method: :delete, :class => "ui red button", data: { modalconfirm: t('.are_you_sure') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  questionnaire_id: MyString
+  questionnaire_language: MyString
+  product_type: MyString
+  product_name: MyString
+  product_code: MyString
+  end_date: 2022-12-06 13:16:03
+  uri_token: MyString
+  user: one
+  instructions: MyText
+  is_closed: false
+  deleted_at: 2022-12-06 13:16:03
+  forbid_multiple_reponses: false
+  ask_user_ideas: false
+  ask_user_summary: false
+  ask_user_age: false
+  ask_user_gender: false
+  ask_user_occupation: false
+  ask_user_first_use_date: false
+  ask_user_usage_frequency: false
+  ask_user_group: false
+
+two:
+  questionnaire_id: MyString
+  questionnaire_language: MyString
+  product_type: MyString
+  product_name: MyString
+  product_code: MyString
+  end_date: 2022-12-06 13:16:03
+  uri_token: MyString
+  user: two
+  instructions: MyText
+  is_closed: false
+  deleted_at: 2022-12-06 13:16:03
+  forbid_multiple_reponses: false
+  ask_user_ideas: false
+  ask_user_summary: false
+  ask_user_age: false
+  ask_user_gender: false
+  ask_user_occupation: false
+  ask_user_first_use_date: false
+  ask_user_usage_frequency: false
+  ask_user_group: false

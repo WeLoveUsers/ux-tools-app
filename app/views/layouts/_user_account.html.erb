@@ -1,0 +1,25 @@
+<div class="ui simple right user_account dropdown item">
+  <i class="user icon"></i> <span class="email"><%= current_user.email %></span> <i class="dropdown icon"></i>
+</div>
+
+<div class="ui special user_account_menu popup">
+  <div class="ui vertical menu">
+    <div class="item">
+      <div class="menu">
+        <% if Devise.mappings[:user].registerable? %>
+          <%= link_to 'Modifier mon compte', edit_user_registration_path, :class => 'item' %>
+        <% end %>
+        <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, :class => 'item' %>
+      </div>
+    </div>
+    <% if current_user.admin? %>
+    <div class="item">
+      <div class="header">Administration</div>
+      <div class="menu">
+          <%= link_to 'Projets et utilisateurs', admin_path, :class => 'item' %>
+          <%= link_to 'Notifications', app_notifications_path, :class => 'item' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

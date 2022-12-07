@@ -1,0 +1,60 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a href="<%= edit_project_path(@project) %>" class="ui right floated primary button disabled">Modifier</a>
+    <% if !@project.is_closed %>
+    <a href="<%= close_project_path(@project) %>" class="ui right floated left labeled button disabled"><span class="ui green right pointing label">Ouvert</span><span class="ui inverted button">Fermer le projet</span></a>
+    <% else %>
+    <a href="<%= open_project_path(@project) %>" class="ui right floated left labeled button disabled"><span class="ui red right pointing label">Fermé</span><span class="ui inverted button">Réouvrir le projet</span></a>
+    <% end %>
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <a href="<%= admin_path %>" class="section">Projets et utilisateurs</a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section"><%= @project.product_name %> - <%= @project.project_code %></h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+<div class="ui container">
+  <div class="ui pointing secondary menu">
+    <a class="item <%= "active" unless @project.has_responses? || @back_to_responses %>" data-tab="description">Description</a>
+    <a class="item <%= "active" if @project.has_responses? && !@back_to_responses %>" data-tab="results">Résultats</a>
+    <a class="item <%= "active" if @back_to_responses %>" data-tab="responses">Réponses</a>
+  </div>
+  <div class="ui tab <%= "active" unless @project.has_responses? || @back_to_responses %>" data-tab="description">
+
+    <table class="ui very basic table">
+      <tbody>
+        <tr>
+          <td width="20%" nowrap>Questionnaire :</td>
+          <td><%= @project.questionnaire_id %> (<%= @project.questionnaire_language %>) - <a href="#" class="show_editor_modal">consulter et modifier la consigne</a></td>
+        </tr>
+        <tr>
+          <td nowrap>Type de produit :</td>
+          <td><%= @project.product_type %></td>
+        </tr>
+        <tr>
+          <td nowrap>Statut :</td>
+          <td><%= status_full_for(@project) %></td>
+        </tr>
+        <tr>
+          <td nowrap>Date de fin de l'évaluation :</td>
+          <td><%= end_date_full_for(@project) %></td>
+        </tr>
+        <tr>
+          <td nowrap>Lien public pour répondre :</td>
+          <td><%= link_to project_public_respond_url(@project.uri_token), project_public_respond_path(@project.uri_token) %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ui tab <%= "active" if @project.has_responses? && !@back_to_responses %>" data-tab="results">
+    <%= render 'projects' + File::SEPARATOR + 'results' + File::SEPARATOR + @project.questionnaire_id_clean, project: @project %>
+  </div>
+
+  <div class="ui tab <%= "active" if @back_to_responses %>" data-tab="responses" id="responsesTab">
+    <%= render 'projects' + File::SEPARATOR + 'responses' + File::SEPARATOR + @project.questionnaire_id_clean, project: @project %>
+  </div>
+
+</div>

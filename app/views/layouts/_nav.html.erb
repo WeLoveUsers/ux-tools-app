@@ -1,0 +1,22 @@
+<div class="ui fixed main menu">
+  <div class="ui container">
+    <a href="<%= root_path %>" class="logo"><img src="<%= image_path('we-love-tools-logo.png')%>" srcset="<%= image_path('we-love-tools-logo.png')%>, <%= image_path('we-love-tools-logo@2x.png')%> 2x" alt="We Love Tools"></a>
+    <% if user_signed_in? %>
+    <div class="right menu">
+      <%= render "layouts/notifications_center" %>
+      <%= render "layouts/user_account" %>
+    </div>
+    <% else %>
+    <div class="right menu">
+      <a href="https://feedback.userreport.com/6aff57ca-4a63-4ab0-a39f-7cf2ac5e4750/" class="item" target="_blank">Une idée ou un bug ?</a>
+
+      <div class="item">
+        <%= link_to "Connexion", new_user_session_path, :class => 'ui button' %>
+      </div>
+      <% if Devise.mappings[:user].registerable? %>
+        <%= link_to "Inscription", new_user_registration_path, :class => 'item' %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

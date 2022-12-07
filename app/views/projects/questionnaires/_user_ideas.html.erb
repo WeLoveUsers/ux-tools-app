@@ -1,0 +1,42 @@
+<% if @project.ask_open_ended_questions %>
+<div class="ui open-ended-questions tab" data-tab="open-ended-questions">
+  <div class="ui container">
+    <div class="ui stacked grid">
+
+      <% if @project.ask_user_summary %>
+      <div class="row">
+        <div class="four wide computer only column"></div>
+        <div class="eight wide computer column sixteen wide column">
+          <div class="field">
+            <label><%= t('.user_summary', product_name: @project.product_name) %></label>
+            <%= f.text_area :summary %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_ideas %>
+      <div class="row">
+        <div class="four wide computer only column"></div>
+        <div class="eight wide computer column sixteen wide column">
+          <div class="field">
+            <label><%= t('.user_ideas') %></label>
+            <%= f.text_area :ideas %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="ui right aligned container">
+    <div class="ui inverted button to-main-form"><%= t('.previous') %></div>
+    <% if @project.ask_respondent_qualification %>
+    <div class="ui large button to-respondent-qualification"><%= t('.next') %></div>
+    <% else %>
+    <%= f.submit t(".submit"), :class => "ui large submit button" %>
+    <% end %>
+  </div>
+</div>
+<% end %>

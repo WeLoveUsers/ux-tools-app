@@ -1,0 +1,12 @@
+<% if @project.responses.count >= 40 %>
+<div class="ui warning message">
+  <div class="header">
+    Beaucoup de données ...
+  </div>
+  <ul class="list">
+    <li>Votre questionnaire contient <span class="ui cream horizontal label"><%= @project.responses.count %> réponses</span></li>
+    <li>Pour réduire le temps de chargement de cette page, nous affichons seulement les <strong>40 réponses les plus récentes</strong>.</li>
+    <li>Pour voir l'intégralité des réponses, téléchargez les données brutes (fichier XLS).</li>
+  </ul>
+</div>
+<% end %>

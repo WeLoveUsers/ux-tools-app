@@ -1,0 +1,33 @@
+.response .deep-grid .section.header {
+  display: none;
+}
+.response .deep-grid .ui.label.ribbon.black {
+  font-weight: 300;
+}
+@media only screen and (max-width: 767px) {
+  .response .deep-grid .section.header {
+    display: block;
+    width: 100%;
+    background: #000;
+    color:#fff;
+    padding: 0.3em 1em;
+    font-size: 0.8em;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+  }
+
+  .response .deep-grid .mobile.only.column .ui.two.column.grid .left.aligned.column {
+    padding-right:0 !important;
+  }
+  .response .deep-grid .mobile.only.column .ui.two.column.grid .right.aligned.column {
+    padding-right:0 !important;
+    padding-left:0rem !important;
+  }
+  .response .deep-grid .mobile.only.column .ui.grid > .right.aligned.column:not(.row),
+  .response .deep-grid .mobile.only.column .ui.grid > .left.aligned.column:not(.row),
+  .response .deep-grid .mobile.only.column .ui.grid > .center.aligned.column:not(.row) {
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+  }
+
+}

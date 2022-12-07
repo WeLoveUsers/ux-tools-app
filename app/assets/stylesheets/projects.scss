@@ -1,0 +1,308 @@
+body, html {
+  font-size: 17px;
+}
+body {
+  margin-top:3em;
+}
+body.response {
+  margin-top:6em;
+}
+body.response.public {
+  margin-top:2em;
+}
+body .page-content {
+  margin-top: 6em;
+  color: #505050;
+}
+a.logo {
+  padding-top: 0.42em;
+}
+body .ui.message a:not(.button),
+body .footer a {
+  color: #505050;
+  text-decoration: underline;
+}
+body .ui.message a:hover:not(.button),
+body .footer a:hover  {
+  color: #333333;
+  text-decoration: underline;
+}
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: #70d4af;
+}
+.login.column {
+  max-width: 24em;
+}
+.ui.main.menu {
+  border:0;
+  border-bottom: 1px #eee solid;
+  box-shadow: none;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+.ui.main.menu .item > img:not(.ui) {
+  width: auto;
+}
+
+.wlu-message {
+  margin-bottom: 2em;
+  background: #f3f3f3;
+}
+.wlu-message .ui.grid {
+  margin:0;
+}
+.wlu-message .wlu-logo {
+  margin-bottom: 1em;
+}
+.wlu-message .ui.grid > .column:not(.row).cover-fit {
+  padding: 0;
+}
+.wlu-message .column.cover-fit img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gender {
+
+}
+.gender .data,
+.gender .label {
+  width: 7em;
+  line-height: 1.1em;
+}
+.gender .data .bar {
+  height:0.8em;
+  display: inline-block;
+}
+.gender .data .male.bar {   background: #2185d0; }
+.gender .data .split.bar {  background: #ffffff; }
+.gender .data .female.bar { background: #e03997; }
+.gender .label {
+
+}
+.gender .label .female,
+.gender .label .male { display: inline-block; width:50%; text-align: left; font-size : 0.7em; padding:0;}
+.gender .label .male { text-align: right;}
+.gender .label .percent {  }
+
+/* BREADCRUMB */
+nav.bc {
+  height:5rem;
+  margin-top: -3.2em;
+  background: #636363;
+  margin-bottom: 2em;
+}
+nav.bc .ui.breadcrumb {
+  line-height: 5rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+nav.bc .ui.breadcrumb,
+nav.bc .ui.breadcrumb a,
+.ui.main.menu .menu .item a {
+  color: #ffffff;
+}
+.ui.main.menu .menu .item a {
+  margin:-1.13em;
+}
+nav.bc .ui.breadcrumb a:hover,
+.ui.main.menu .menu .item a:hover {
+  color: #70d4af;
+}
+nav.bc .ui.breadcrumb .active {
+  color: #70d4af;
+  font-weight: 300;
+}
+.ui.breadcrumb .icon.divider {
+  color: #ffffff;
+  opacity: 1;
+}
+nav.bc .ui.breadcrumb h1 {
+  font-size: inherit;
+}
+nav.bc .button {
+  margin-top:1.2rem;
+}
+
+/* SEARCH MENU */
+nav.search {
+  background: #F9FAFB;
+  border-bottom: 1px #EEEEEE solid;
+  margin-top: -2em;
+  padding-bottom: 0.8em;
+  margin-bottom: 2em;
+}
+
+/* PROJECTS LIST */
+.ui.vertically.divided.grid a {
+    color:#636363;
+    border-left: 3px transparent solid;
+}
+.ui.vertically.divided.grid a:hover {
+  color: #333333;
+  border-left: 3px #70d4af solid;
+}
+.ui.grid .sub.header {
+  font-size: 0.5em;
+}
+
+/* PROJECTS FORM */
+.ui.date.calendar {
+  width:14em;
+}
+.ui.date.month.calendar {
+  width:11em;
+}
+.ui.dividing.header {
+  display: block;
+}
+.ui.form textarea {
+  font-family: 'PT Serif', serif;
+}
+
+/* TABS & INSIDE CONTENT */
+.ui.tab a,
+.ui.form a,
+.ui.list a,
+body .ui.message a:not(.button),
+.ui.message a {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  color:#636363;
+}
+.ui.tab a:hover:not(.button),
+.ui.form a:hover:not(.button),
+.ui.list a:hover:not(.button),
+body .ui.message a:hover:not(.button),
+.ui.message a:hover:not(.button) {
+  color: #333333;
+  border-bottom: 3px #70d4af solid;
+  text-decoration: none;
+}
+.terms.field .ui.checkbox label a {
+  line-height: 1.6em;
+}
+.terms.field .ui.checkbox label:before,
+.terms.field .ui.checkbox label:after {
+  top: 0.38em;
+}
+.ui.secondary.pointing.menu {
+  border-color: transparent;
+  border-bottom-width: 3px;
+  margin-bottom: 2em;
+}
+.ui.secondary.pointing.menu .item {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  border-bottom-width: 3px;
+}
+.ui.secondary.pointing.menu .item:hover,
+.ui.secondary.pointing.menu .active.item:hover {
+  border-color: #70d4af;
+}
+.ui.secondary.pointing.menu .active.item {
+  border-color: #70d4af;
+  font-weight: 400;
+}
+.ui.statistics .statistic {
+  margin: 0em 1.5em 0em;
+}
+.ui.statistics .statistic .label,
+.ui.statistics .statistic .value {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+.ui.statistics .statistic .tiny.label {
+  text-transform: none !important;
+  font-family: 'PT Serif', serif;
+}
+.ui.table tr.deleted td:not(.action) {
+  text-decoration: line-through;
+  color:#ccc;
+  font-style: italic;
+}
+.ui.table tr.sub-header th {
+  font-size:0.7em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+/* CONFIG BUTTON & POPUP */
+.ui.config.button {
+  position: absolute;
+  right:1em;
+  top:1em;
+}
+.ui.config.popup .ui.checkbox label:before {
+  top: 0.18em;
+}
+.ui.config.popup .ui.checkbox label {
+  line-height: 1.4em;
+}
+
+/* FOOTER */
+.ui.footer.segment {
+  margin: 3em 0em 0em;
+  padding: 3em 0em;
+}
+
+/* FORM RADIOS */
+.ui.form .huge-radio .ui.radio.checkbox .box:before,
+.ui.form .huge-radio .ui.radio.checkbox label:before,
+.ui.form .huge-radio .ui.radio.checkbox .box:after,
+.ui.form .huge-radio .ui.radio.checkbox label:after,
+.ui.form .huge-radio .ui.checkbox input[type="checkbox"],
+.ui.form .huge-radio .ui.checkbox input[type="radio"] {
+  width: 30px;
+  height: 30px;
+}
+.ui.form .huge-radio .ui.radio.checkbox {
+  line-height: 30px;
+  min-height: 30px;
+  min-width: 30px;
+}
+
+.ui.form input[type="number"].proportion {
+  width: 80px;
+}
+
+/* FORM RIBBON HEADERS */
+.ui.selectable.table tbody tr.header {
+  font-size:0.86em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+.ui.selectable.table tbody tr.header:hover {
+  background: transparent !important;
+}
+.ui.selectable.table tbody tr.header:hover td {
+  background: transparent;
+}
+.ui[class*="very basic"].table:not(.sortable):not(.striped) tr.header td.ribbon {
+  padding-left:1em;
+  padding-right:1em;
+  font-weight: 300;
+  margin-top:1.24em;
+}
+
+/* FORM RESPONSE STEPS */
+.ui.tab.open-ended-questions .ui.container .ui.stacked.grid,
+.ui.tab.respondent-qualification .ui.container .ui.stacked.grid {
+    margin-top:2rem;
+    margin-bottom:2rem;
+}
+
+/* TERMS MODAL */
+#terms_modal .content {
+  height:26em;
+  overflow-y: scroll;
+}
+
+/* QUILL JS (surcharge) */
+.ql-container {
+  font-family: inherit;
+  font-size: inherit;
+}

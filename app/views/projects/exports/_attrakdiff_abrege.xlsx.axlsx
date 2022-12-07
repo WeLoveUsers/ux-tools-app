@@ -1,0 +1,53 @@
+@wb.add_worksheet(name: "Réponses") do |sheet|
+  sheet.add_row ['Légende'], :style => @black_cell
+
+  sheet.add_row ['ATT2 :', ResponseAttrakDiffAbridged::ATT2_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::ATT2_label[I18n.locale][:good]]
+  sheet.add_row ['ATT5 :', ResponseAttrakDiffAbridged::ATT5_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::ATT5_label[I18n.locale][:good]]
+
+  sheet.add_row ['QP2 :',  ResponseAttrakDiffAbridged::QP2_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiffAbridged::QP2_label[I18n.locale][:good]]
+  sheet.add_row ['QP3 :',  ResponseAttrakDiffAbridged::QP3_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiffAbridged::QP3_label[I18n.locale][:good]]
+  sheet.add_row ['QP5 :',  ResponseAttrakDiffAbridged::QP5_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiffAbridged::QP5_label[I18n.locale][:good]]
+  sheet.add_row ['QP6 :',  ResponseAttrakDiffAbridged::QP6_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiffAbridged::QP6_label[I18n.locale][:good]]
+
+  sheet.add_row ['QHS2 :', ResponseAttrakDiffAbridged::QHS2_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::QHS2_label[I18n.locale][:good]]
+  sheet.add_row ['QHS5 :', ResponseAttrakDiffAbridged::QHS5_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::QHS5_label[I18n.locale][:good]]
+
+  sheet.add_row ['QHI3 :', ResponseAttrakDiffAbridged::QHI3_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::QHI3_label[I18n.locale][:good]]
+  sheet.add_row ['QHI4 :', ResponseAttrakDiffAbridged::QHI4_label[I18n.locale][:bad] + " - " + ResponseAttrakDiffAbridged::QHI4_label[I18n.locale][:good]]
+
+  sheet.add_row ['']
+  sheet.add_row ['-3 :', 'Note minimale']
+  sheet.add_row ['+3 :', 'Note maximale']
+  sheet.add_row ['']
+
+
+  sheet.add_row ['Synthèse'], :style => @black_cell
+  sheet.add_row ['', 'ATT', nil, 'QP', nil, 'QH', nil, nil, 'QHS', nil, 'QHI']
+  sheet.add_row ['Score moyen :', @project.attrakdiff_average_scores[:ATT][:mean],  nil, @project.attrakdiff_average_scores[:QP][:mean],   nil, @project.attrakdiff_average_scores[:QH][:mean],  nil, nil, @project.attrakdiff_average_scores[:QHS][:mean],  nil, @project.attrakdiff_average_scores[:QHI][:mean]]
+  sheet.add_row ['Ecart type :',  @project.attrakdiff_average_scores[:ATT][:sd],    nil, @project.attrakdiff_average_scores[:QP][:sd],     nil, @project.attrakdiff_average_scores[:QH][:sd],    nil, nil, @project.attrakdiff_average_scores[:QHS][:sd],    nil, @project.attrakdiff_average_scores[:QHI][:sd]]
+  sheet.add_row ['IC (90%) :',    @project.attrakdiff_average_scores[:ATT][:ci_90], nil, @project.attrakdiff_average_scores[:QP][:ci_90],  nil, @project.attrakdiff_average_scores[:QH][:ci_90], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_90], nil, @project.attrakdiff_average_scores[:QHI][:ci_90]]
+  sheet.add_row ['IC (95%) :',    @project.attrakdiff_average_scores[:ATT][:ci_95], nil, @project.attrakdiff_average_scores[:QP][:ci_95],  nil, @project.attrakdiff_average_scores[:QH][:ci_95], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_95], nil, @project.attrakdiff_average_scores[:QHI][:ci_95]]
+  sheet.add_row ['IC (99%) :',    @project.attrakdiff_average_scores[:ATT][:ci_99], nil, @project.attrakdiff_average_scores[:QP][:ci_99],  nil, @project.attrakdiff_average_scores[:QH][:ci_99], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_99], nil, @project.attrakdiff_average_scores[:QHI][:ci_99]]
+  sheet.add_row ['']
+
+  sheet.add_row ResponseAttrakDiffAbridged::Export_entete, :style => @black_cell
+  i = 1
+  @project.responses.order("created_at asc").each do |response|
+    sheet.add_row [i, gender_name_for(response.gender), human_age_for(response.age),
+                      response.ATT2, response.ATT5,
+                      response.QP2, response.QP3, response.QP5, response.QP6,
+                      response.QHS2, response.QHS5,
+                      response.QHI3, response.QHI4,
+                      response.occupation, response.summary, response.ideas, response.created_at],
+                      :style => [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, @date]
+    i = i + 1
+  end
+
+  sheet.add_row ['']
+  sheet.add_row ['Références'], :style => @black_cell
+  ResponseAttrakDiff::Infos[:bibliography].each do |s|
+    sheet.add_row [strip_tags(s.html_safe).gsub(/&amp;/, "&")]
+  end
+
+  sheet.column_widths 13, 9, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, nil
+end

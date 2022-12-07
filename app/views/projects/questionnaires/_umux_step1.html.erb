@@ -1,0 +1,135 @@
+<div class="ui container <%= "navigable-tabs" if @project.ask_open_ended_questions || @project.ask_respondent_qualification %>">
+
+  <div class="ui segment">
+    <% if @project.ask_open_ended_questions || @project.ask_respondent_qualification %>
+        <div class="ui top right attached small step-counter label"><%= t('.step') %> <span class="current-step"></span>/<span class="total-steps"></span></div>
+    <% end %>
+    <h2 class="form-title"><%= t('.title') + ' "' + @project.product_name + '"' %></h2>
+    <%= form_for(response, :html => {:class => "ui form umux", :data => { :formtype => "response_umux" }}) do |f| %>
+
+    <div class="ui active huge-radio tab" data-tab="main-form">
+      <div class="ui sus-grid middle aligned stackable grid likert-style-grid">
+        <div class="tablet computer only row">
+          <div class="nine wide column"></div>
+          <div class="seven wide column">
+            <div class="ui two column grid">
+              <div class="left aligned column"><%= t('.likert_disagree') %></div>
+              <div class="right aligned column"><%= t('.likert_agree') %></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field row">
+          <div class="nine wide column"><%= ResponseUmux::Q1_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first %></div>
+          <div class="one wide tablet computer only column"></div>
+          <div class="mobile only column">
+            <div class="ui two column grid">
+              <div class="left aligned column"><%= t('.likert_disagree') %></div>
+              <div class="right aligned column"><%= t('.likert_agree') %></div>
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui seven column grid">
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="0"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="1"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="2"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="3"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="4"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="5"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q1]" value="6"><label></label></div></div>
+            </div>
+          </div>
+          <div class="one wide tablet computer only column"></div>
+        </div>
+
+        <div class="field row">
+          <div class="nine wide column"><%= ResponseUmux::Q2_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first %></div>
+          <div class="one wide tablet computer only column"></div>
+          <div class="mobile only column">
+            <div class="ui two column grid">
+              <div class="left aligned column"><%= t('.likert_disagree') %></div>
+              <div class="right aligned column"><%= t('.likert_agree') %></div>
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui seven column grid">
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="6"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="5"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="4"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="3"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="2"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="1"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q2]" value="0"><label></label></div></div>
+            </div>
+          </div>
+          <div class="one wide tablet computer only column"></div>
+        </div>
+
+        <div class="field row">
+          <div class="nine wide column"><%= ResponseUmux::Q3_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first %></div>
+          <div class="one wide tablet computer only column"></div>
+          <div class="mobile only column">
+            <div class="ui two column grid">
+              <div class="left aligned column"><%= t('.likert_disagree') %></div>
+              <div class="right aligned column"><%= t('.likert_agree') %></div>
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui seven column grid">
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="0"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="1"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="2"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="3"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="4"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="5"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q3]" value="6"><label></label></div></div>
+            </div>
+          </div>
+          <div class="one wide tablet computer only column"></div>
+        </div>
+
+        <div class="field row">
+          <div class="nine wide column"><%= ResponseUmux::Q4_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first %></div>
+          <div class="one wide tablet computer only column"></div>
+          <div class="mobile only column">
+            <div class="ui two column grid">
+              <div class="left aligned column"><%= t('.likert_disagree') %></div>
+              <div class="right aligned column"><%= t('.likert_agree') %></div>
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui seven column grid">
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="6"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="5"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="4"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="3"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="2"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="1"><label></label></div></div>
+                <div class="column"><div class="ui fitted radio checkbox"><input type="radio" name="response_umux[Q4]" value="0"><label></label></div></div>
+            </div>
+          </div>
+          <div class="one wide tablet computer only column"></div>
+        </div>
+
+      </div>
+
+      <div class="ui right aligned container">
+        <% if @project.ask_open_ended_questions %>
+        <div class="ui large button to-open-ended-questions"><%= t('.next') %></div>
+        <% elsif @project.ask_respondent_qualification %>
+        <div class="ui large button to-respondent-qualification"><%= t('.next') %></div>
+        <% else %>
+        <%= f.submit t(".submit"), :class => "ui large submit button" %>
+        <% end %>
+      </div>
+
+    </div>
+
+    <%= render 'projects' + File::SEPARATOR + 'questionnaires' + File::SEPARATOR + 'user_ideas', project: @project, f: f %>
+    <%= render 'projects' + File::SEPARATOR + 'questionnaires' + File::SEPARATOR + 'user_qualification', project: @project, f: f %>
+
+    <input type="hidden" name="uri_token" value="<%= @project.uri_token %>">
+    <input type="hidden" name="response_su[f]" value="">
+    <% end %>
+  </div>
+</div>

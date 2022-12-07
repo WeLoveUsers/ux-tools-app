@@ -1,0 +1,32 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="left aligned login column">
+    <h2 class="ui header"><%= t('.change_your_password') %></h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class => "ui large form signup" }) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password" placeholder: "Mot de passe", data: { content: "6 caractères minimum" }, class: "field-popup" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe" %>
+          </div>
+        </div>
+
+        <%= f.submit t('.change_my_password'), :class => "ui large fluid submit button" %>
+      </div>
+
+    <% end %>
+
+    <div class="ui message">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

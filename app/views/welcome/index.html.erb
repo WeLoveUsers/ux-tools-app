@@ -1,0 +1,71 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <h1 class="active section" href="<%= root_path %>"><%= root_path_name %></h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+<div class="ui container wlu-message">
+  <div class="ui three columns grid">
+    <div class="middle aligned left aligned column">
+      <p>We Love Tools est un service d’outils en ligne gratuit créé par We Love Users et dédié à tous les professionnels de l’UX et du Design.</p>
+
+      <p>Pour en profiter et réaliser vos questionnaires personnalisés, il vous suffit de créer votre compte ou de vous connecter !</p>
+    </div>
+    <div class="middle aligned column cover-fit"><img src="<%= image_path('recherche-utilisateur.jpg')%>" srcset="<%= image_path('recherche-utilisateur.jpg')%>, <%= image_path('recherche-utilisateur@2x.jpg')%> 2x" alt="Recherche utilisateur"></div>
+    <div class="middle aligned center aligned column">
+      <img class="wlu-logo" src="<%= image_path('we-love-users-logo.png')%>" srcset="<%= image_path('we-love-users-logo.png')%>, <%= image_path('we-love-users-logo@2x.png')%> 2x" alt="We Love Users">
+      <p><a class="ui button" href="http://www.weloveusers.com" target="_blank">Découvrir l'agence We Love Users</a></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui container">
+  <div class="ui cards">
+    <a class="ui card" href="<%= projects_path %>">
+      <div class="content">
+        <div class="header">Questionnaires UX</div>
+        <div class="meta">
+          <span class="category">Outils de mesure</span>
+        </div>
+        <div class="description">
+          <p>Créez des évaluations UX basées sur des questionnaires standards (ex. SUS, AttrakDiff, DEEP, etc.)</p>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+      <div class="extra content">
+        <i class="icon bar chart"></i> <%= current_user.projects.count %> projet(s) d'évaluation
+      </div>
+      <% end %>
+    </a>
+
+    <a class="ui card" href="<%= url_for :controller => 'timer', :action => 'index' %>">
+      <div class="content">
+        <div class="header">Compte à rebours</div>
+        <div class="meta">
+          <span class="category">Outils d'animation</span>
+        </div>
+        <div class="description">
+          <p>Rendez le temps visible pour les participants (ateliers, formations, etc.)</p>
+        </div>
+      </div>
+    </a>
+
+    <%
+    # Disabled for now
+    if false %>
+    <a class="ui card" href="<%= url_for :controller => 'sample_sizes', :action => 'usability_problems' %>">
+      <div class="content">
+        <div class="header">Combien d'utilisateurs pour un test ?</div>
+        <div class="meta">
+          <span class="category">Estimateur de taille d'échantillons</span>
+        </div>
+        <div class="description">
+          <p>[...]</p>
+        </div>
+      </div>
+    </a>
+    <% end %>
+  </div>
+</div>

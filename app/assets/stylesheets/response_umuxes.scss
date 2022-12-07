@@ -1,0 +1,54 @@
+// Place all the styles related to the ResponseUMUXes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.umux-chart.sus-chart {
+  padding: 6em 2em 2em 2em;
+}
+.umux-chart.sus-chart .sus-score .steps {
+  border: 0;
+}
+.umux-chart.sus-chart .sus-score .step {
+  width: 20%;
+  height:20px;
+}
+.umux-chart.sus-chart .sus-score .scale-labels {
+  color:#666666;
+  position: relative;
+}
+.umux-chart.sus-chart .sus-score .scale-label {
+  width: auto;
+  font-size: 1.4em;
+  padding-bottom:0.6em;
+  text-align: center;
+  position: absolute;
+  top: -1em;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(1) {
+  left:0;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(2) {
+  left:19%;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(3) {
+  left:39%;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(4) {
+  left:59%;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(5) {
+  left:79%;
+}
+.umux-chart.sus-chart .sus-score .scale-label:nth-child(6) {
+  right:0;
+}
+.umux-chart.sus-chart .sus-result .result .text {
+  top: -1.6em;
+  background: #333333;
+  color: #ffffff;
+}
+.umux-chart.sus-chart .sus-result .result {
+  height: 4em;
+  background: #333333;
+  top: -1.8em;
+}

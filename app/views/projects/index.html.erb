@@ -1,0 +1,46 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a href="<%= new_project_path %>" class="ui right floated primary button">Nouvelle évaluation</a>
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section">Questionnaires UX</h1>
+  </div>
+</nav>
+
+<nav class="search">
+  <div class="ui grid container">
+    <div class="six wide column">
+      <%= form_tag(projects_path, method: "get") do %>
+        <div class="ui field">
+          <%= dropdown_for_order_by(@order_by_possible_values, @order_by_selected_value) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<%= flash_messages %>
+
+<div class="ui relaxed vertically divided middle aligned grid container">
+  <% @projects.each do |project| %>
+  <a href="<%= url_for project %>" class="row">
+    <div class="seven wide column">
+      <h2 clas="ui header">
+        <%= project.product_name %> - <%= project.project_code %>
+        <div class="sub header"><%= project.questionnaire_id %> (<%= project.questionnaire_language %>)</div>
+      </h2>
+    </div>
+    <div class="four wide column">
+      <%= project.product_type %>
+    </div>
+    <div class="two wide column">
+      <%= status_for(project) %>
+    </div>
+    <div class="three wide right aligned column">
+      <span class="ui <%= 'cream' if project.responses.count > 0 %> label">
+        <%= project.responses.count.to_s + " " + "réponse".pluralize(project.responses.count) %>
+      </span>
+    </div>
+
+  </a>
+  <% end %>
+</div>

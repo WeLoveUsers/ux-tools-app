@@ -1,0 +1,10 @@
+<div class="ui text container">
+  <div class="ui segment">
+  	<h2><%= t('.title')%></h2>
+  	<div><%= @project.instructions.html_safe %></div>
+    <div class="ui right aligned container">
+  		<a href="<%= url_for project_public_respond_path(project.uri_token, step: 1) %>" class="ui button large"><%= t('.submit')%></a>
+  	</div>
+  </div>
+  <%= render 'edit_instructions_message', project: @project %>
+</div>

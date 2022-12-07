@@ -1,0 +1,142 @@
+.sus-chart {
+  display: block;
+  background: #F4F4F4;
+  border:1px #DEDEDE solid;
+  padding:6em 4em 6em 4em;
+  margin: 2em 0;
+  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+}
+.sus-chart .sus-grade {
+  margin: 1em 0;
+}
+.sus-chart .sus-grade .grade {
+  font-size:1.6em;
+  display: inline-block;
+  background: #ccc;
+  margin: 0;
+  line-height: 2em;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+.sus-chart .sus-grade .grade.grade-f {
+  width: 51.7%;
+  background-color: #C73C3C;
+  color: #fff;
+}
+.sus-chart .sus-grade .grade.grade-d {
+  width: 10.9%;
+  background-color: #E69601;
+  color: #fff;
+}
+.sus-chart .sus-grade .grade.grade-c {
+  width: 9.9%;
+  background-color: #ECE700;
+}
+.sus-chart .sus-grade .grade.grade-b {
+  width: 6.3%;
+  background-color: #B6DD08;
+}
+.sus-chart .sus-grade .grade.grade-a {
+  width: 21.2%;
+  background-color: #00E649;
+}
+
+.sus-chart .sus-score .steps {
+  display: block;
+  border-left: 2px #CACACA solid;
+  border-right: 2px #CACACA solid;
+  height: 30px;
+  line-height: 30px;
+}
+.sus-chart .sus-score .step {
+  width: 10%;
+  line-height: 10px;
+  height: 10px;
+  font-size: 2px;
+  background-color: #CACACA;
+  display: inline-block;
+  border-right: 2px #fff solid;
+}
+.sus-chart .sus-score .step:last-of-type {
+  border: none;
+}
+.sus-chart .sus-score .scale-labels {
+  color:#CACACA;
+  font-size:0.7em;
+  line-height: 0.7em;
+  padding-left:0.7em;
+}
+.sus-chart .sus-score .scale-label {
+  display: inline-block;
+  width: 10.04%;
+  text-align: right;
+}
+.sus-chart .sus-score .scale-special-labels {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  position: relative;
+}
+.sus-chart .sus-score .scale-special-labels .scale-special-label {
+  position: absolute;
+  display: block;
+  font-size:1.6em;
+  color: #989898;
+  margin-top:0.4em;
+}
+.sus-chart .sus-score .scale-special-labels .scale-special-label .text {
+  position: absolute;
+  display: block;
+  text-align: center;
+  top: 2em;
+  font-family: "PT Serif", sans-serif;
+  font-size:0.6em;
+  line-height: 1.2em;
+}
+.sus-chart .sus-score .scale-special-labels .label-0   { left:-0.6%; }
+.sus-chart .sus-score .scale-special-labels .label-25  { left:24.4%; }
+.sus-chart .sus-score .scale-special-labels .label-25 .text { left:-108%; }
+.sus-chart .sus-score .scale-special-labels .label-39  { left:38.4%; }
+.sus-chart .sus-score .scale-special-labels .label-39 .text { left:-66%; }
+.sus-chart .sus-score .scale-special-labels .label-52  { left:51.4%; }
+.sus-chart .sus-score .scale-special-labels .label-52 .text { left:-96%; }
+.sus-chart .sus-score .scale-special-labels .label-73  { left:72.4%; }
+.sus-chart .sus-score .scale-special-labels .label-73 .text { left:-14%; }
+.sus-chart .sus-score .scale-special-labels .label-86  { left:85.4%; }
+.sus-chart .sus-score .scale-special-labels .label-86 .text { left:-74%; }
+.sus-chart .sus-score .scale-special-labels .label-100 { right:-1.6%; }
+.sus-chart .sus-score .scale-special-labels .label-100 .text { left:-60%; }
+
+.sus-chart .sus-result {
+  display: block;
+  position: relative;
+}
+.sus-chart .sus-result .result {
+  display: block;
+  width:3px;
+  position: absolute;
+  background: #fff;
+  height:7.6em;
+  /*box-shadow: 10px 10px 10px -0px rgba(0, 0, 0, 0.3);*/
+}
+.sus-chart .sus-result .result .text {
+  font-size:1.6em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  color:#505050;
+  position: absolute;
+  top:-2.5em;
+  padding:0.4em;
+  display: block;
+  background: #fff;
+  width:6em;
+  border-radius: 8px;
+  text-align: center;
+  left:-3em;
+  /*box-shadow: 20px 20px 19px -7px rgba(0,0,0,0.3);*/
+}
+.sus-result .grade-a { background-color: #00E649; }
+.sus-result .grade-b { background-color: #B6DD08; }
+.sus-result .grade-c { background-color: #ECE700; }
+.sus-result .grade-d { background-color: #E69601; color: #fff; }
+.sus-result .grade-f { background-color: #C73C3C; color: #fff; }

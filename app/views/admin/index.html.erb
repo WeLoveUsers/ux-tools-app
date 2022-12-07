@@ -1,0 +1,184 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section">Projets et utilisateurs</h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+
+<div class="ui container">
+  <div class="ui pointing secondary menu">
+    <a class="item active" data-tab="user_accounts">Utilisateurs</a>
+    <a class="item" data-tab="questionnaires">Questionnaires UX</a>
+  </div>
+  <div class="ui tab active" data-tab="user_accounts">
+    <div class="ui segment">
+      <div class="ui statistics">
+        <div class="statistic">
+          <div class="label">
+            <%= "Utilisateur".pluralize(@count[:users]) %>
+          </div>
+          <div class="value">
+            <%= @count[:users] %>
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="label">
+            Dernier compte créé il y a
+          </div>
+          <div class="value">
+            <%= distance_of_time_in_words(@users[:new].first.created_at, DateTime.now) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="ui header">Top 10 des utilisateurs actifs</h2>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th width="25%">E-mail</th>
+          <th>Dernière connexion</th>
+          <th class="center aligned">Projets</th>
+          <th class="center aligned" width="15%">Connexions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users[:active].each do |user|
+            css_class = 'basic'
+            if (5..49).include?(user.sign_in_count)
+              css_class = 'teal'
+            elsif user.sign_in_count >= 50
+              css_class = 'pink'
+            end
+        %>
+        <tr>
+          <td width="25%"><%= user.email %></td>
+          <td><%= l user.current_sign_in_at, format: :long %></td>
+          <td class="center aligned" width="15%"><%= user.projects.count %></td>
+          <td class="center aligned"><span class="ui <%= css_class %> circular label"><%= user.sign_in_count %></span></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2 class="ui header">Derniers comptes créés</h2>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th width="25%">E-mail</th>
+          <th>Date de création</th>
+          <th class="center aligned" width="15%">Projets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users[:new].each do |user| %>
+        <tr>
+          <td width="25%"><%= user.email %></td>
+          <td><%= l user.created_at, format: :long %></td>
+          <td class="center aligned" width="15%"><%= user.projects.count %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="ui tab" data-tab="questionnaires">
+    <div class="ui segment">
+      <div class="ui statistics">
+        <div class="statistic">
+          <div class="label">
+            <%= "Projet".pluralize(@count[:projects]) %>
+          </div>
+          <div class="value">
+            <%= @count[:projects] %>
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="label">
+            <%= "Réponse".pluralize(@count[:responses]) %>
+          </div>
+          <div class="value">
+            <%= @count[:responses] %>
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="label">
+            Dernier projet créé il y a
+          </div>
+          <div class="value">
+            <%= distance_of_time_in_words(@projects[:new].first.created_at, DateTime.now) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="ui header">Top des projets actifs (< 1 mois)</h2>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th colspan="2">Projet</th>
+          <th>Questionnaire UX</th>
+          <th>Date de fin</th>
+          <th class="center aligned" width="15%">Réponses</th>
+          <th>Dernière réponse il y a</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects[:top_active].each do |project, count|
+            css_class = 'basic'
+            if (5..14).include?(count)
+              css_class = 'teal'
+            elsif count >= 15
+              css_class = 'pink'
+            end
+        %>
+        <tr>
+          <td><a href="<%= url_for admin_project_path(project) %>"><%= project.product_name %> - <%= project.project_code %></a></td>
+          <td><%= project.product_type %></td>
+          <td><%= project.questionnaire_id %> (<%= project.questionnaire_language %>)</td>
+          <td><%= end_date_for(project) %><br /><span class="ui tiny basic label"><%= project.user.email %></span></td>
+          <td class="center aligned" width="15%"><span class="ui <%= css_class %> circular label"><%= count %></span></td>
+          <td><%= distance_of_time_in_words(project.responses.last.created_at, DateTime.now) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2 class="ui header">Nouveaux projets</h2>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th colspan="2">Projet</th>
+          <th>Questionnaire UX</th>
+          <th>Date de création</th>
+          <th class="center aligned" width="15%">Réponses</th>
+          <th>Dernière réponse le il y a</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects[:new].each do |project|
+            css_class = 'basic'
+            if (5..14).include?(project.responses.count)
+              css_class = 'teal'
+            elsif project.responses.count >= 15
+              css_class = 'pink'
+            end
+        %>
+        <tr>
+          <td><a href="<%= url_for admin_project_path(project) %>"><%= project.product_name %> - <%= project.project_code %></a></td>
+          <td><%= project.product_type %></td>
+          <td><%= project.questionnaire_id %> (<%= project.questionnaire_language %>)</td>
+          <td><%= l project.created_at, format: :long %><br /><span class="ui tiny basic label"><%= project.user.email %></span></td>
+          <td class="center aligned" width="15%"><span class="ui <%= css_class %> circular label"><%= project.responses.count %></span></td>
+          <td><%= distance_of_time_in_words(project.responses.last.created_at, DateTime.now) unless project.responses.count == 0 %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

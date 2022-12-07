@@ -1,0 +1,83 @@
+<div class="ui top attached segment stackable statistics no-padding grid">
+  <button class="ui icon config button"><i class="setting icon"></i></button>
+  <div class="ui special config popup">
+      <div id="show_variability" class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" <%= 'checked' if @show_variability %>>
+        <label>Afficher les écart-types (σ) et les intervalles de confiance (IC)</label>
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui field">
+        Degré de confiance : <div class="ui selection attrakdiff_confidence compact dropdown" data-target="confidence_value">
+          <div class="text"><%= @ci_level %></div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item" data-value="<%= @attrakdiff_average_scores[:QP][:ci_90] %>_<%= @attrakdiff_average_scores[:QHS][:ci_90] %>_<%= @attrakdiff_average_scores[:QHI][:ci_90] %>_<%= @attrakdiff_average_scores[:ATT][:ci_90] %>" data-text="90%">90%</div>
+            <div class="item" data-value="<%= @attrakdiff_average_scores[:QP][:ci_95] %>_<%= @attrakdiff_average_scores[:QHS][:ci_95] %>_<%= @attrakdiff_average_scores[:QHI][:ci_95] %>_<%= @attrakdiff_average_scores[:ATT][:ci_95] %>" data-text="95%">95%</div>
+            <div class="item" data-value="<%= @attrakdiff_average_scores[:QP][:ci_99] %>_<%= @attrakdiff_average_scores[:QHS][:ci_99] %>_<%= @attrakdiff_average_scores[:QHI][:ci_99] %>_<%= @attrakdiff_average_scores[:ATT][:ci_99] %>" data-text="99%">99%</div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="ui three wide column">
+    <div class="statistic">
+      <div class="label"><%= "Réponse".pluralize(@project.responses.count) %></div>
+      <div class="value"><%= @project.responses.count %></div>
+    </div>
+  </div>
+  <div class="ui three wide column">
+    <div class="statistic">
+      <div class="label">Moyenne QP</div>
+      <div class="value"><%= @attrakdiff_average_scores[:QP][:mean] %></div>
+    </div>
+  </div>
+  <div class="ui three wide column">
+    <div class="statistic">
+      <div class="label">Moyenne QHS</div>
+      <div class="value"><%= @attrakdiff_average_scores[:QHS][:mean] %></div>
+    </div>
+  </div>
+  <div class="ui three wide column">
+    <div class="statistic">
+      <div class="label">Moyenne QHI</div>
+      <div class="value"><%= @attrakdiff_average_scores[:QHI][:mean] %></div>
+    </div>
+  </div>
+  <div class="ui three wide column">
+    <div class="statistic">
+      <div class="label">Moyenne ATT</div>
+      <div class="value"><%= @attrakdiff_average_scores[:ATT][:mean] %></div>
+    </div>
+  </div>
+</div>
+
+<div class="ui bottom attached message variability <%= 'hidden' unless @show_variability %> divided no-padding grid">
+  <div class="ui three wide column"></div>
+  <div class="ui three wide column">
+    <div class="tiny label">σ = <%= @attrakdiff_average_scores[:QP][:sd] %></div>
+    <div class="tiny label">IC = <span id="confidence_value_QP"><%= @attrakdiff_average_scores[:QP][@ci_level_hash_key] %></span></div>
+  </div>
+  <div class="ui three wide column">
+    <div class="tiny label">σ = <%= @attrakdiff_average_scores[:QHS][:sd] %></div>
+    <div class="tiny label">IC = <span id="confidence_value_QHS"><%= @attrakdiff_average_scores[:QHS][@ci_level_hash_key] %></span></div>
+  </div>
+  <div class="ui three wide column">
+    <div class="tiny label">σ = <%= @attrakdiff_average_scores[:QHI][:sd] %></div>
+    <div class="tiny label">IC = <span id="confidence_value_QHI"><%= @attrakdiff_average_scores[:QHI][@ci_level_hash_key] %></span></div>
+  </div>
+  <div class="ui three wide column">
+    <div class="tiny label">σ = <%= @attrakdiff_average_scores[:ATT][:sd] %></div>
+    <div class="tiny label">IC = <span id="confidence_value_ATT"><%= @attrakdiff_average_scores[:ATT][@ci_level_hash_key] %></span></div>
+  </div>
+</div>
+
+<div class="ui grid container segment">
+  <div class="ui eight wide column">
+      <%= attrak_diff_average_chart_for(@project, @attrakdiff_average_scores) %>
+  </div>
+  <div class="ui eight wide column">
+      <%= attrak_diff_portfolio_chart_for(@project, @attrakdiff_average_scores) %>
+  </div>
+  <div class="ui ten wide column">
+      <%= attrak_diff_word_pair_chart_for(@project, @attrakdiff_word_pair_average_score) %>
+  </div>
+</div>

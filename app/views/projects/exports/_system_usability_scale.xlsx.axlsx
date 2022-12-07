@@ -1,0 +1,57 @@
+@wb.add_worksheet(name: "Réponses") do |sheet|
+  sheet.add_row ['Légende'], :style => @black_cell
+  sheet.add_row ['Q1 :',  ResponseSu::Q1_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale])]
+  sheet.add_row ['Q2 :',  ResponseSu::Q2_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale]) + " *"]
+  sheet.add_row ['Q3 :',  ResponseSu::Q3_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale])]
+  sheet.add_row ['Q4 :',  ResponseSu::Q4_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale]) + " *"]
+  sheet.add_row ['Q5 :',  ResponseSu::Q5_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale])]
+  sheet.add_row ['Q6 :',  ResponseSu::Q6_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale]) + " *"]
+  sheet.add_row ['Q7 :',  ResponseSu::Q7_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale])]
+  sheet.add_row ['Q8 :',  ResponseSu::Q8_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale]) + " *"]
+  sheet.add_row ['Q9 :',  ResponseSu::Q9_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale])]
+  sheet.add_row ['Q10 :', ResponseSu::Q10_label[I18n.locale].sub('@product_type', @project.sus_product_type[I18n.locale]) + " *"]
+  sheet.add_row ['']
+  sheet.add_row ["* les notes affichées sont toutes dans le même sens, que l'item soit inversé ou non :"]
+  sheet.add_row ['0 :', 'Note minimale']
+  sheet.add_row ['4 :', 'Note maximale']
+  sheet.add_row ['']
+
+  sheet.add_row ['Synthèse'], :style => @black_cell
+  sheet.add_row ['Note moyenne :',  @project.sus_grade]
+  sheet.add_row ['Score moyen :',  @project.sus_score[:mean]]
+  sheet.add_row ['Ecart type :',  @project.sus_score[:sd]]
+  sheet.add_row ['IC (90%) :',  @project.sus_score[:ci_90]]
+  sheet.add_row ['IC (95%) :',  @project.sus_score[:ci_95]]
+  sheet.add_row ['IC (99%) :',  @project.sus_score[:ci_99]]
+  sheet.add_row ['']
+
+
+  sheet.add_row ResponseSu::Export_entete, :style => @black_cell
+  i = 1
+  @project.responses.order("created_at asc").each do |response|
+    score = Stats::SUS::score(response)[:mean]
+
+    #vector = [response.Q1, response.Q2, response.Q3, response.Q4, response.Q5, response.Q6, response.Q7, response.Q8, response.Q9, response.Q10].to_vector(:scale)
+    #ds = {'notes' => vector}.to_dataset
+    cronbach = ''
+    #Statsample::Reliability.cronbach_alpha(ds)
+    #cronbach = Statsample::Reliability.cronbach_alpha()
+    sheet.add_row [i, gender_name_for(response.gender), human_age_for(response.age),
+                      response.Q1, response.Q2, response.Q3, response.Q4, response.Q5,
+                      response.Q6, response.Q7, response.Q8, response.Q9, response.Q10,
+                      score, response.occupation, response.summary, response.ideas, response.created_at],
+                      :style => [nil, nil, nil,
+                                 nil, nil, nil, nil, nil,
+                                 nil, nil, nil, nil, nil,
+                                 nil, nil, nil, nil, @date]
+    i = i + 1
+  end
+
+  sheet.add_row ['']
+  sheet.add_row ['Références'], :style => @black_cell
+  ResponseSu::Infos[:bibliography].each do |s|
+    sheet.add_row [strip_tags(s.html_safe).gsub(/&amp;/, "&")]
+  end
+
+  sheet.column_widths 13, 9, 7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, nil
+end

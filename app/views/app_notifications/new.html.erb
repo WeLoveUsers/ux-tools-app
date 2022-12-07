@@ -1,0 +1,14 @@
+<nav class="bc">
+  <div class="ui large breadcrumb container">
+    <a href="<%= app_notifications_path %>" class="ui right floated inverted button">Annuler</a>
+    <a class="section" href="<%= root_path %>"><%= root_path_name %></a>
+    <i class="right chevron icon divider"></i>
+    <a href="<%= app_notifications_path %>" class="section">Notifications</a>
+    <i class="right chevron icon divider"></i>
+    <h1 class="active section">Nouvelle notification</h1>
+  </div>
+</nav>
+
+<%= flash_messages %>
+
+<%= render 'form', app_notification: @app_notification %>

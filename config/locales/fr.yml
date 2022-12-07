@@ -1,0 +1,103 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+fr:
+  time:
+    formats:
+      custom: "%A %e %B %Y"
+  helpers:
+    submit:
+      project:
+        update: "Enregistrer"
+        create: "Créer une évaluation"
+      app_notification:
+        update: "Enregistrer"
+        create: "Créer une notification"
+  projects:
+    form:
+      are_you_sure: "Êtes-vous sûr de vouloir supprimer ce projet d'évaluation ?"
+      btn_delete: "Supprimer ce projet d'évaluation"
+    respond:
+      closed: "Fini !"
+      closed_details: "Cette évaluation est à présent terminée."
+      responded: "Déjà répondu !"
+      responded_details: "Il semble que vous ayez déjà répondu à cette évaluation."
+    response_saved:
+      thanks: "Merci !"
+      thanks_details: "Votre réponse a bien été enregistrée."
+    questionnaires:
+      introduction:
+        title: "Veuillez lire attentivement la consigne"
+        submit: "Commencer"
+      system_usability_scale_step1:
+        title: "Evaluez"
+        likert_disagree: "Pas du tout d'accord"
+        likert_agree: "Tout à fait d'accord"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      attrakdiff_step1:
+        title: "Evaluez"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      attrakdiff_abrege_step1:
+        title: "Evaluez"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      deep_step1:
+        title: "Evaluez"
+        likert_disagree: "Pas du tout d'accord"
+        likert_agree: "Tout à fait d'accord"
+        likert_not_applicable: "Non applicable"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      umux_step1:
+        title: "Evaluez"
+        likert_disagree: "Pas du tout d'accord"
+        likert_agree: "Tout à fait d'accord"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      umux_lite_step1:
+        title: "Evaluez"
+        likert_disagree: "Pas du tout d'accord"
+        likert_agree: "Tout à fait d'accord"
+        submit: "Envoyer"
+        step: "Étape"
+        next: "Suivant"
+      user_ideas:
+        submit: "Envoyer"
+        next: "Suivant"
+        previous: "Précédent"
+        user_summary: 'De manière générale, que pensez-vous de "%{product_name}" ?'
+        user_ideas: "Avez-vous des idées à suggérer ?"
+      user_qualification:
+        submit: "Envoyer"
+        previous: "Précédent"
+        user_age: "Âge"
+        user_years: "ans"
+        user_gender: "Sexe"
+        user_female: "Femme"
+        user_male: "Homme"
+        user_occupation: "Métier (ou occupation)"

@@ -1,0 +1,90 @@
+<a href="<%= url_for project_path(@project, format: "xlsx") %>" class="ui button <%= 'disabled' if !@project.has_responses? %>">Télécharger les données brutes (.xlsx)</a>
+<%
+  respondent_cols = 1
+  respondent_cols += 1 if @project.ask_user_gender
+  respondent_cols += 1 if @project.ask_user_age
+  rowspan = 1
+  rowspan += 1 if respondent_cols > 1
+%>
+
+<%= render 'projects' + File::SEPARATOR + 'responses' + File::SEPARATOR + 'too_many_responses', project: @project %>
+
+<table class="ui small compact celled table">
+  <thead>
+    <tr>
+      <th class="collapsing" colspan="<%= respondent_cols %>">Répondant</th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G1_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G2_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G3_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G4_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G5_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>"><%= ResponseDeep::G6_label[I18n.locale].partition(" ").first %></th>
+      <th rowspan="<%= rowspan %>">Date et heure (Paris)</th>
+      <th class="collapsing" rowspan="<%= rowspan %>">Actions</th>
+    </tr>
+    <% if respondent_cols > 1 %>
+    <tr class="sub-header">
+      <th>#</th>
+      <% if @project.ask_user_gender %><th>Sexe</th><% end %>
+      <% if @project.ask_user_age %><th>Âge</th><% end %>
+    </tr>
+    <% end %>
+  </thead>
+  <tbody>
+    <%
+      i = 0
+      if @project.responses.count >= 40
+        i = @project.responses.count - 40
+      end
+      @project.responses.order("created_at asc").last(40).each do |response|
+        i = i + 1
+        scores = Stats::Deep::average_scores(response)
+    %>
+    <tr>
+      <td><%= i %></td>
+      <% if @project.ask_user_gender %><td><%= gender_icon_for(response.gender) %></td><% end %>
+      <% if @project.ask_user_age %><td><%= human_age_for(response.age) %></td><% end %>
+      <td><%= scores[:G1][:mean] %></td>
+      <td><%= scores[:G2][:mean] %></td>
+      <td><%= scores[:G3][:mean] %></td>
+      <td><%= scores[:G4][:mean] %></td>
+      <td><%= scores[:G5][:mean] %></td>
+      <td><%= scores[:G6][:mean] %></td>
+      <td class="collapsing"><%= human_date_for(response.created_at) %></td>
+      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+    </tr>
+    <% end %>
+    <%
+      @project.responses.only_deleted.order("created_at asc").each do |response|
+        scores = Stats::Deep::average_scores(response)
+    %>
+    <tr class="deleted">
+      <td>-</td>
+      <% if @project.ask_user_gender %><td><%= gender_icon_for(response.gender) %></td><% end %>
+      <% if @project.ask_user_age %><td><%= human_age_for(response.age) %></td><% end %>
+      <td><%= scores[:G1][:mean] %></td>
+      <td><%= scores[:G2][:mean] %></td>
+      <td><%= scores[:G3][:mean] %></td>
+      <td><%= scores[:G4][:mean] %></td>
+      <td><%= scores[:G5][:mean] %></td>
+      <td><%= scores[:G6][:mean] %></td>
+      <td class="collapsing"><%= human_date_for(response.created_at) %></td>
+      <td class="action"><%= link_to "Récupérer", recover_response_deeps_url(response) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th>N = <%= @project.responses.count %></th>
+      <% if @project.ask_user_gender %><th class="collapsing"><%= gender_graph_stats_for(@users_stats[:gender][:mean]) %></th><% end %>
+      <% if @project.ask_user_age %><th class="collapsing"><%= @users_stats[:age][:mean] %> <small>(σ = <%= @users_stats[:age][:sd] %>)</small></th><% end %>
+      <th><%= @deep_scores[:G1][:mean] %> <small>(σ = <%= @deep_scores[:G1][:sd] %>)</small></th>
+      <th><%= @deep_scores[:G2][:mean] %> <small>(σ = <%= @deep_scores[:G2][:sd] %>)</small></th>
+      <th><%= @deep_scores[:G3][:mean] %> <small>(σ = <%= @deep_scores[:G3][:sd] %>)</small></th>
+      <th><%= @deep_scores[:G4][:mean] %> <small>(σ = <%= @deep_scores[:G4][:sd] %>)</small></th>
+      <th><%= @deep_scores[:G5][:mean] %> <small>(σ = <%= @deep_scores[:G5][:sd] %>)</small></th>
+      <th><%= @deep_scores[:G6][:mean] %> <small>(σ = <%= @deep_scores[:G6][:sd] %>)</small></th>
+      <th colspan="2"></th>
+    </tr>
+  </tfoot>
+</table>

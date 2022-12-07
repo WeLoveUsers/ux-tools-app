@@ -1,0 +1,24 @@
+<%= form_for(@project, :html => {:id => "instructions_editor_modal", :class => "ui modal"}) do |f| %>
+  <i class="close icon"></i>
+  <div class="header">Consigne affichée aux répondants</div>
+
+  <div class="content ui text container">
+    <%= f.hidden_field :instructions %>
+
+    <trix-toolbar id="project_instructions_toolbar">
+      <div class="ui icon small basic buttons toolbar">
+        <button class="ui button" data-trix-attribute="bold" data-trix-key="b" title="Gras"><i class="bold icon"></i></button>
+        <button class="ui button" data-trix-attribute="bullet" title="Puces"><i class="unordered list icon"></i></button>
+      </div>
+    </trix-toolbar>
+
+    <trix-editor id="project_instructions_editor" input="project_instructions" toolbar="project_instructions_toolbar"></trix-editor>
+  </div>
+  <div class="actions">
+    <button class="ui cancel primary button" type="reset">Annuler</button>
+    <input type="hidden" name="redirect_back" value ="true">
+    <%- I18n.with_locale(:fr) do %>
+    <%= f.submit :class => "ui submit save button" %>
+    <% end %>
+  </div>
+<% end %>

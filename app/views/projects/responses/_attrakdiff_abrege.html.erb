@@ -1,0 +1,79 @@
+<a href="<%= url_for project_path(@project, format: "xlsx") %>" class="ui button <%= 'disabled' if !@project.has_responses? %>">Télécharger les données brutes (.xlsx)</a>
+<%
+  respondent_cols = 1
+  respondent_cols += 1 if @project.ask_user_gender
+  respondent_cols += 1 if @project.ask_user_age
+  rowspan = 1
+  rowspan += 1 if respondent_cols > 1
+%>
+
+<%= render 'projects' + File::SEPARATOR + 'responses' + File::SEPARATOR + 'too_many_responses', project: @project %>
+
+<table class="ui small compact celled structured table">
+  <thead>
+    <tr>
+      <th class="collapsing" colspan="<%= respondent_cols %>">Répondant</th>
+      <th rowspan="<%= rowspan %>">Attractivité Globale</th>
+      <th rowspan="<%= rowspan %>">Qualité Pragmatique</th>
+      <th rowspan="<%= rowspan %>">Qualité Hédonique</th>
+      <th rowspan="<%= rowspan %>">Date et heure (Paris)</th>
+      <th class="collapsing" rowspan="<%= rowspan %>">Actions</th>
+    </tr>
+    <% if respondent_cols > 1 %>
+    <tr class="sub-header">
+      <th>#</th>
+      <% if @project.ask_user_gender %><th>Sexe</th><% end %>
+      <% if @project.ask_user_age %><th>Âge</th><% end %>
+    </tr>
+    <% end %>
+  </thead>
+  </thead>
+  <tbody>
+    <%
+      i = 0
+      if @project.responses.count >= 40
+        i = @project.responses.count - 40
+      end
+      @project.responses.order("created_at asc").last(40).each do |response|
+        i = i + 1
+        scores = Stats::AttrakDiff::average_scores(response, true)
+    %>
+    <tr>
+      <td><%= i %></td>
+      <% if @project.ask_user_gender %><td><%= gender_icon_for(response.gender) %></td><% end %>
+      <% if @project.ask_user_age %><td><%= human_age_for(response.age) %></td><% end %>
+      <td><%= scores[:ATT][:mean] %></td>
+      <td><%= scores[:QP][:mean] %></td>
+      <td><%= scores[:QH][:mean] %></td>
+      <td class="collapsing"><%= human_date_for(response.created_at) %></td>
+      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+    </tr>
+    <% end %>
+    <%
+      @project.responses.only_deleted.order("created_at asc").each do |response|
+        scores = Stats::AttrakDiff::average_scores(response, true)
+    %>
+    <tr class="deleted">
+      <td>-</td>
+      <% if @project.ask_user_gender %><td><%= gender_icon_for(response.gender) %></td><% end %>
+      <% if @project.ask_user_age %><td><%= human_age_for(response.age) %></td><% end %>
+      <td><%= scores[:ATT][:mean] %></td>
+      <td><%= scores[:QP][:mean] %></td>
+      <td><%= scores[:QH][:mean] %></td>
+      <td class="collapsing"><%= human_date_for(response.created_at) %></td>
+      <td class="action"><%= link_to "Récupérer", recover_response_attrak_diff_abridgeds_url(response) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th>N = <%= @project.responses.count %></th>
+      <% if @project.ask_user_gender %><th class="collapsing"><%= gender_graph_stats_for(@users_stats[:gender][:mean]) %></th><% end %>
+      <% if @project.ask_user_age %><th class="collapsing"><%= @users_stats[:age][:mean] %> <small>(σ = <%= @users_stats[:age][:sd] %>)</small></th><% end %>
+      <th><%= @attrakdiff_average_scores[:ATT][:mean] %> <small>(σ = <%= @attrakdiff_average_scores[:ATT][:sd] %>)</small></th>
+      <th><%= @attrakdiff_average_scores[:QP][:mean] %> <small>(σ = <%= @attrakdiff_average_scores[:QP][:sd] %>)</small></th>
+      <th><%= @attrakdiff_average_scores[:QH][:mean] %> <small>(σ = <%= @attrakdiff_average_scores[:QH][:sd] %>)</small></th>
+      <th colspan="2"></th>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,77 @@
+@wb.add_worksheet(name: "Réponses") do |sheet|
+  sheet.add_row ['Légende'], :style => @black_cell
+  sheet.add_row ['ATT1 :', ResponseAttrakDiff::ATT1_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT1_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP1 :',  ResponseAttrakDiff::QP1_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP1_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS1 :', ResponseAttrakDiff::QHS1_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS1_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI1 :', ResponseAttrakDiff::QHI1_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI1_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT2 :', ResponseAttrakDiff::ATT2_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT2_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP2 :',  ResponseAttrakDiff::QP2_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP2_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS2 :', ResponseAttrakDiff::QHS2_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS2_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI2 :', ResponseAttrakDiff::QHI2_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI2_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT3 :', ResponseAttrakDiff::ATT3_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT3_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP3 :',  ResponseAttrakDiff::QP3_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP3_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS3 :', ResponseAttrakDiff::QHS3_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS3_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI3 :', ResponseAttrakDiff::QHI3_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI3_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT4 :', ResponseAttrakDiff::ATT4_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT4_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP4 :',  ResponseAttrakDiff::QP4_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP4_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS4 :', ResponseAttrakDiff::QHS4_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS4_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI4 :', ResponseAttrakDiff::QHI4_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI4_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT5 :', ResponseAttrakDiff::ATT5_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT5_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP5 :',  ResponseAttrakDiff::QP5_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP5_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS5 :', ResponseAttrakDiff::QHS5_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS5_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI5 :', ResponseAttrakDiff::QHI5_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI5_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT6 :', ResponseAttrakDiff::ATT6_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT6_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP6 :',  ResponseAttrakDiff::QP6_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP6_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS6 :', ResponseAttrakDiff::QHS6_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS6_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI6 :', ResponseAttrakDiff::QHI6_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI6_label[I18n.locale][:good]]
+
+  sheet.add_row ['ATT7 :', ResponseAttrakDiff::ATT7_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::ATT7_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QP7 :',  ResponseAttrakDiff::QP7_label[I18n.locale][:bad]  + " - " + ResponseAttrakDiff::QP7_label[I18n.locale][:good],  nil, nil, nil, nil, nil,
+                 'QHS7 :', ResponseAttrakDiff::QHS7_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHS7_label[I18n.locale][:good], nil, nil, nil, nil, nil,
+                 'QHI7 :', ResponseAttrakDiff::QHI7_label[I18n.locale][:bad] + " - " + ResponseAttrakDiff::QHI7_label[I18n.locale][:good]]
+
+  sheet.add_row ['']
+  sheet.add_row ['-3 :', 'Note minimale']
+  sheet.add_row ['+3 :', 'Note maximale']
+  sheet.add_row ['']
+
+  sheet.add_row ['Synthèse'], :style => @black_cell
+  sheet.add_row ['', 'ATT', nil, 'QP', nil, 'QH', nil, nil, 'QHS', nil, 'QHI']
+  sheet.add_row ['Score moyen :', @project.attrakdiff_average_scores[:ATT][:mean],  nil, @project.attrakdiff_average_scores[:QP][:mean],   nil, @project.attrakdiff_average_scores[:QH][:mean],  nil, nil, @project.attrakdiff_average_scores[:QHS][:mean],  nil, @project.attrakdiff_average_scores[:QHI][:mean]]
+  sheet.add_row ['Ecart type :',  @project.attrakdiff_average_scores[:ATT][:sd],    nil, @project.attrakdiff_average_scores[:QP][:sd],     nil, @project.attrakdiff_average_scores[:QH][:sd],    nil, nil, @project.attrakdiff_average_scores[:QHS][:sd],    nil, @project.attrakdiff_average_scores[:QHI][:sd]]
+  sheet.add_row ['IC (90%) :',    @project.attrakdiff_average_scores[:ATT][:ci_90], nil, @project.attrakdiff_average_scores[:QP][:ci_90],  nil, @project.attrakdiff_average_scores[:QH][:ci_90], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_90], nil, @project.attrakdiff_average_scores[:QHI][:ci_90]]
+  sheet.add_row ['IC (95%) :',    @project.attrakdiff_average_scores[:ATT][:ci_95], nil, @project.attrakdiff_average_scores[:QP][:ci_95],  nil, @project.attrakdiff_average_scores[:QH][:ci_95], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_95], nil, @project.attrakdiff_average_scores[:QHI][:ci_95]]
+  sheet.add_row ['IC (99%) :',    @project.attrakdiff_average_scores[:ATT][:ci_99], nil, @project.attrakdiff_average_scores[:QP][:ci_99],  nil, @project.attrakdiff_average_scores[:QH][:ci_99], nil, nil, @project.attrakdiff_average_scores[:QHS][:ci_99], nil, @project.attrakdiff_average_scores[:QHI][:ci_99]]
+  sheet.add_row ['']
+
+  sheet.add_row ResponseAttrakDiff::Export_entete, :style => @black_cell
+  i = 1
+  @project.responses.order("created_at asc").each do |response|
+    sheet.add_row [i, gender_name_for(response.gender), human_age_for(response.age),
+                      response.ATT1, response.ATT2, response.ATT3, response.ATT4, response.ATT5, response.ATT6, response.ATT7,
+                      response.QP1, response.QP2, response.QP3, response.QP4, response.QP5, response.QP6, response.QP7,
+                      response.QHS1, response.QHS2, response.QHS3, response.QHS4, response.QHS5, response.QHS6, response.QHS7,
+                      response.QHI1, response.QHI2, response.QHI3, response.QHI4, response.QHI5, response.QHI6, response.QHI7,
+                      response.occupation, response.summary, response.ideas, response.created_at],
+                      :style => [nil, nil, nil,
+                                 nil, nil, nil, nil, nil, nil, nil,
+                                 nil, nil, nil, nil, nil, nil, nil,
+                                 nil, nil, nil, nil, nil, nil, nil,
+                                 nil, nil, nil, nil, nil, nil, nil,
+                                 nil, nil, nil, @date]
+    i = i + 1
+  end
+
+  sheet.add_row ['']
+  sheet.add_row ['Références'], :style => @black_cell
+  ResponseAttrakDiff::Infos[:bibliography].each do |s|
+    sheet.add_row [strip_tags(s.html_safe).gsub(/&amp;/, "&")]
+  end
+
+  sheet.column_widths 13, 9, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, nil
+end

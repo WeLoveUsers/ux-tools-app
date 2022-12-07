@@ -1,0 +1,115 @@
+<% if @project.ask_respondent_qualification %>
+<div class="ui respondent-qualification tab" data-tab="respondent-qualification">
+  <div class="ui container">
+    <div class="ui stacked grid">
+
+      <% if @project.ask_user_age %>
+      <div class="row">
+        <div class="five wide computer only column"></div>
+        <div class="three wide computer column ten wide column">
+          <div class="field required">
+            <label for="response_su_age"><%= t('.user_age') %></label>
+            <div class="ui right labeled input">
+              <%= f.number_field :age, in: 1..99, step: 1, :class => "no-spinner", :value => nil%>
+              <div class="ui basic label">
+                <%= t('.user_years') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_gender %>
+      <div class="row">
+        <div class="five wide computer only column"></div>
+        <div class="three wide computer column sixteen wide column">
+          <div class="grouped fields required">
+            <label><%= t('.user_gender') %></label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <%= f.radio_button :gender, "1"%>
+                <label><%= t('.user_female') %></label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <%= f.radio_button :gender, "2"%>
+                <label><%= t('.user_male') %></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_occupation %>
+      <div class="row">
+        <div class="five wide computer only column"></div>
+        <div class="six wide computer column sixteen wide column">
+          <div class="field required">
+            <label><%= t('.user_occupation') %></label>
+            <%= f.text_field :occupation %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_first_use_date %>
+      <div class="row">
+        <div class="five wide column"></div>
+        <div class="six wide column">
+          <div class="field required">
+            <label>Depuis quand utilisez-vous "<%= @project.product_name %>" ?</label>
+            <div class="ui date month calendar">
+              <div class="ui left icon action input">
+                <i class="calendar icon"></i>
+                <input type="text" placeholder="Date" value="<%= response.first_use_on %>">
+                <div class="ui icon clear-date basic button">
+                  <i class="close icon"></i>
+                </div>
+              </div>
+            </div>
+            <%= f.hidden_field :first_use_on %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_usage_frequency %>
+      <div class="row">
+        <div class="five wide column"></div>
+        <div class="six wide column">
+          <div class="field required">
+            <label>En moyenne, combien de fois par mois utilisez-vous "<%= @project.product_name %>" ?</label>
+            <%= f.text_field :usage_frequency_per_month %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @project.ask_user_group %>
+      <div class="row">
+        <div class="five wide column"></div>
+        <div class="six wide column">
+          <div class="required field">
+            <label>Groupe (ou type d'utilisateur)</label>
+            <%= f.text_field :group %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="ui right aligned container">
+    <% if @project.ask_open_ended_questions %>
+    <div class="ui inverted button to-open-ended-questions"><%= t('.previous') %></div>
+    <% else %>
+    <div class="ui inverted button to-main-form"><%= t('.previous') %></div>
+    <% end %>
+    <%= f.submit t(".submit"), :class => "ui large submit button" %>
+  </div>
+</div>
+<% end %>

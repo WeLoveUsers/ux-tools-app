@@ -1,0 +1,36 @@
+  <div class="ui item notifications">
+    <i class="alarm icon"></i>
+    <span id="app_notifications_count" class="mini circular ui green label <%= 'read' unless current_user.unread_notifications_count > 0%>"><%= current_user.unread_notifications_count %></span>
+  </div>
+
+  <div class="ui special app_notifications popup">
+    <div class="notifications">
+      <% if current_user.recent_app_notifications.count == 0 %>
+        <div class="ui no-notification">Aucune notification de mise à jour pour l'instant.</div>
+      <% else %>
+        <% current_user.recent_app_notifications.each do |app_notification| %>
+          <% has_been_read = current_user.has_read_notification(app_notification)%>
+          <div class="ui preview notification <%= 'read' unless !has_been_read %>" data-read-url="<%= mark_notification_as_read_url(app_notification) %>.json">
+            <div class="status"><div class="ui green empty circular label"></div></div>
+            <div class="type"><i class="<%= app_notification.notification_type.downcase %> icon"></i></div>
+            <div class="title"><%= app_notification.title %>
+              <div class="date"><%= l app_notification.date, format: :custom  %></div>
+            </div>
+
+
+            <div class="ui small notification modal">
+              <div class="header"><i class="<%= app_notification.notification_type.downcase %> icon"></i><%= app_notification.title %>
+                <div class="date"><%= l app_notification.date, format: :custom  %></div>
+              </div>
+              <div class="scrolling content"><%= app_notification.content.html_safe %></div>
+              <div class="actions">
+                <div class="ui approve button">Fermer</div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="divider"></div>
+    <a href="https://feedback.userreport.com/6aff57ca-4a63-4ab0-a39f-7cf2ac5e4750/" class="item" target="_blank">Une idée ou un bug ?</a>
+  </div>

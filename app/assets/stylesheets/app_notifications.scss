@@ -1,0 +1,72 @@
+// Place all the styles related to the AppNotifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.ui.item.notifications {
+  cursor: pointer;
+}
+.ui.item.notifications:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.95);
+}
+.ui.item.notifications #app_notifications_count {
+  position: absolute;
+  right: 1em;
+  top:0.6em;
+}
+.ui.special.app_notifications.popup {
+  padding:0;
+}
+.ui.special.app_notifications.popup .notifications {
+  max-height:15em;
+  overflow-y: auto;
+  border-bottom: 1px #eee solid;
+}
+.ui.special.app_notifications.popup .notifications .ui.notification {
+  padding:0.8em;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 1px #eee solid;
+}
+.ui.special.app_notifications.popup .notifications .ui.notification:last-child{
+  border-bottom: none;
+}
+.ui.special.app_notifications.popup .notifications .ui.notification:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+.ui.special.app_notifications.popup .notifications .ui.notification.read {
+  color:#999;
+}
+.ui.notification .status {
+  width: 1.8em;
+  text-align: center;
+}
+.ui.notification .type {
+  width: 2.4em;
+  text-align: right;
+}
+.ui.notification .date,
+.ui.notification.modal .header .date {
+  font-family: 'PT Serif', serif;
+  font-weight: normal;
+  font-size: 0.64em;
+  line-height: 1.3em;
+}
+.ui.notification .title {
+  padding-left: 0.5em;
+  flex-basis: 17em;
+}
+/* READ status */
+.ui.item.notifications .ui.green.label.read,
+.ui.special.app_notifications.popup .notifications .ui.notification.read .status .ui.green.label {
+  background-color: #eee !important;
+  border-color: #eee !important;
+}
+/* NO notification yet */
+.notifications .ui.no-notification {
+  font-family: 'PT Serif', serif;
+  font-weight: normal;
+  padding: 0.5em 1em;
+}

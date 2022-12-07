@@ -1,0 +1,62 @@
+<%= form_error_messages_for(app_notification) %>
+
+<div class="ui container">
+  <%= form_for(app_notification, :html => {:class => "ui large form evaluation-project"}) do |f| %>
+  <div class="ui stacked segment grid">
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :date, 'Date :' %></div>
+      <div class="eleven wide column">
+
+        <div class="ui date calendar">
+          <div class="ui left icon action input">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="Date" value="<%= app_notification.date %>">
+            <div class="ui icon clear-date basic button">
+              <i class="close icon"></i>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="app_notification[date]" id="app_notification_date" value="<%= app_notification.date %>">
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :notification_type, 'Type de notification :' %></div>
+      <div class="eleven wide column"><%= f.text_field :notification_type, :placeholder => "Ex. gift, warning sign, etc." %></div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :title, 'Titre :' %></div>
+      <div class="eleven wide column"><%= f.text_field :title, :placeholder => "Ex. Consignes dynamiques pour SUS" %></div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :content, 'Contenu :' %></div>
+      <div class="eleven wide column">
+        <div class="content ui text container">
+          <%= f.hidden_field :content %>
+
+          <trix-toolbar id="app_notification_content_toolbar">
+            <div class="ui icon small basic buttons toolbar">
+              <button class="ui button" data-trix-attribute="bold" data-trix-key="b" title="Gras"><i class="bold icon"></i></button>
+              <button class="ui button" data-trix-attribute="italic" data-trix-key="i" title="Italique"><i class="italic icon"></i></button>
+              <button class="ui button" data-trix-attribute="bullet" title="Puces"><i class="unordered list icon"></i></button>
+            </div>
+          </trix-toolbar>
+
+          <trix-editor id="app_notification_content_editor" input="app_notification_content" toolbar="app_notification_content_toolbar"></trix-editor>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row no-padding field">
+      <div class="five wide column"></div>
+      <div class="eleven wide column"><%= f.submit :class => "ui large submit button" %></div>
+    </div>
+
+  </div>
+  <% end %>
+</div>

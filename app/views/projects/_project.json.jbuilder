@@ -1,0 +1,2 @@
+json.extract! project, :id, :questionnaire_id, :questionnaire_language, :produtct_type, :product_name, :product_code, :end_date, :uri_token, :user_id, :created_at, :updated_at
+json.url project_url(project, format: :json)

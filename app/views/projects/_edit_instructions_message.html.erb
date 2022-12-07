@@ -1,0 +1,6 @@
+<% if user_signed_in? && current_user == @project.user %>
+  <div class="ui tiny message">
+    <i class="write icon"></i><a href="#" class="show_editor_modal">Modifier la consigne</a>
+  </div>
+  <%= render 'editor_modal', project: @project %>
+<% end %>

@@ -1,0 +1,51 @@
+.user_account_menu.popup {
+  padding: 0;
+}
+.user_account_menu.popup .ui.vertical.menu {
+  border: 0;
+  box-shadow: none;
+  width:14rem;
+}
+.user_account_menu.popup .ui.vertical.menu .item {
+  padding: 0;
+}
+.user_account_menu.popup .ui.vertical.menu .item > .menu {
+  margin:0;
+}
+.user_account_menu.popup .ui.vertical.menu .item > .header {
+  font-size: 0.76em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  color: #999;
+  padding:1em 1.6em 0.3em 1.6em;
+}
+.user_account_menu.popup .ui.vertical.menu .item .menu > .item {
+    margin: 0;
+    text-align: left;
+    font-size: 1em !important;
+    padding: 0.78571429em 1.14285714em !important;
+    background: transparent !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-transform: none !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+}
+
+.user_account_menu.popup .ui.vertical.menu .item .menu > .item:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: rgba(0, 0, 0, 0.95) !important
+}
+
+input[type=number].no-spinner::-webkit-inner-spin-button,
+input[type=number].no-spinner::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0 !important;
+}

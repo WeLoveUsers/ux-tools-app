@@ -1,0 +1,205 @@
+<%= form_error_messages_for(project) %>
+
+<div class="ui container">
+<%= form_for(project, :html => {:class => "ui large form evaluation-project"}) do |f| %>
+  <div class="ui stacked segment grid">
+    <% if params[:action] === 'edit' %>
+    <div class="ui black ribbon label">Modification</div>
+    <div class="row no-padding field"></div>
+    <% end %>
+
+    <%
+    disabled_when_has_responses = false
+    if project.has_responses?
+      disabled_when_has_responses = true
+    end
+    %>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :questionnaire_id, 'Questionnaire :' %></div>
+      <div class="eleven wide column">
+        <%= f.select :questionnaire_id, Project.questionnaireTypes, {}, :disabled => disabled_when_has_responses %>
+         - <a href="#" class="show_questionnaire_help_modal">Quelles différences ?</a>
+         - <a href="#" class="show_questionnaire_references_modal">Références</a>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :questionnaire_language, 'Langue du questionnaire :' %></div>
+      <div class="eleven wide column">
+        <%= f.select :questionnaire_language, Project.questionnaireLanguages, {}, :disabled => disabled_when_has_responses %>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :product_type, 'Type de produit :' %></div>
+      <div class="eleven wide column"><%= f.select :product_type, Project.productTypes, {}, :disabled => disabled_when_has_responses %></div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :product_name, 'Nom du produit ou service :' %></div>
+      <div class="eleven wide column"><%= f.text_field :product_name, :placeholder => "Ex. 'Mon super produit'", :disabled => disabled_when_has_responses %></div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :project_code, 'Code du projet :' %></div>
+      <div class="eleven wide column"><%= f.text_field :project_code, :placeholder => "Ex. 'Etude n°14'" %></div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="sixteen wide column">
+        <div class="ui dividing header">Questions complémentaires</div>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column">Questions ouvertes :</div>
+      <div class="eleven wide column">
+        <div>
+          <div class="ui checkbox">
+            <%= f.check_box :ask_user_summary %>
+            <label for="project_ask_user_summary">Demander <em><span data-tooltip='Q : De manière générale, que pensez-vous de "<%= project.product_name.nil? ? "[nom du produit]" : project.product_name %>" ?'>l'avis général<sup>*</sup></span></em> sur le produit</label>
+          </div>
+        </div>
+        <div>
+          <div class="ui checkbox">
+            <%= f.check_box :ask_user_ideas %>
+            <label for="project_ask_user_ideas">Demander des <em><span data-tooltip='Q : Avez-vous des idées à suggérer ?'>suggestions d'idées<sup>*</sup></span></em></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column">Qualification des répondants :</div>
+      <div class="eleven wide column">
+        <div>
+          <div class="ui checkbox">
+            <%= f.check_box :ask_user_age %>
+            <label for="project_ask_user_age">Âge</label>
+          </div>
+        </div>
+        <div>
+          <div class="ui checkbox">
+            <%= f.check_box :ask_user_gender %>
+            <label for="project_ask_user_gender">Sexe</label>
+          </div>
+        </div>
+        <div>
+          <div class="ui checkbox">
+            <%= f.check_box :ask_user_occupation %>
+            <label for="project_ask_user_occupation">Métier (ou occupation)</label>
+          </div>
+        </div>
+        <%
+        # <div>
+        #   <div class="ui checkbox">
+        #     <%= f.check_box :ask_user_first_use_date, :disabled => disabled_when_has_responses
+        # % >
+        #     <label for="project_ask_user_first_use_date">Date de première utilisation du produit ou service</label>
+        #   </div>
+        # </div>
+        # <div>
+        #   <div class="ui checkbox">
+        #     <%= f.check_box :ask_user_usage_frequency, :disabled => disabled_when_has_responses
+        # % >
+        #     <label for="project_ask_user_first_use_date">Fréquence d'utilisation mensuelle du produit ou service</label>
+        #   </div>
+        # </div>
+        %>
+
+      </div>
+    </div>
+
+    <%
+    # <div class="row no-padding field">
+    #   <div class="five wide column">Groupes d'utilisateurs :</div>
+    #   <div class="eleven wide column">
+    #     <div>
+    #       <div class="ui checkbox">
+    #         <%= f.check_box :ask_user_group, :disabled => disabled_when_has_responses
+    # % >
+    #         <label for="project_ask_user_group">Demander aux répondants de choisir leur groupe</label>
+    #       </div>
+    #     </div>
+    #   </div>
+    # </div>
+    %>
+
+    <div class="row no-padding field">
+      <div class="sixteen wide column">
+        <div class="ui dividing header">Options</div>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"><%= f.label :end_date, "Date de fin de l'évaluation :" %></div>
+      <div class="eleven wide column">
+
+        <%
+        min_date = Date.today
+        set_date = ''
+        if params[:action] === 'edit'
+          if !project.end_date.nil? && project.end_date != ''
+            min_date = project.end_date.to_date
+            set_date = min_date
+          end
+        end %>
+
+        <div class="ui date calendar with-min-date" data-min-date="<%= min_date %>" data-set-date="<%= set_date %>">
+          <div class="ui left icon action input">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="Date" value="<%= project.end_date %>">
+            <div class="ui icon clear-date basic button">
+              <i class="close icon"></i>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="project[end_date]" id="project_end_date" value="<%= project.end_date %>">
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column">Réponses multiples :</div>
+      <div class="eleven wide column">
+        <div class="ui checkbox">
+          <%= f.check_box :forbid_multiple_reponses %>
+          <label for="project_forbid_multiple_reponses">Interdire à un <em><span data-tooltip="Fonctionne avec un cookie enregistré dans le navigateur des répondants.">même participant<sup>*</sup></span></em> de répondre plusieurs fois</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-padding field">
+      <div class="five wide column"></div>
+      <div class="eleven wide column"><%= f.submit :class => "ui large submit button" %></div>
+    </div>
+
+  </div>
+<% end %>
+<% if params[:action] != 'new' %>
+  <div class="ui stacked negative message grid">
+    <div class="ui row field">
+      <div class="sixteen wide column">
+        <h2 class="ui header">Zone dangereuse</h2>
+      </div>
+    </div>
+
+    <div class="ui row field">
+      <div class="sixteen wide column">
+        <p>Supprimer ce projet d'évaluation : toutes les données associées seront également supprimées. <br/><i class="icon warning sign"></i>Cette action est <strong>irréversible</strong>.</p>
+      </div>
+    </div>
+
+    <div class="ui row no-padding field">
+      <div class="five wide column"></div>
+      <div class="eleven wide column">
+        <%= button_to t('.btn_delete'), project, method: :delete, :class => "ui red button", data: { modalconfirm: t('.are_you_sure') } %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<%= render 'questionnaire_help_modal', project: @project %>
+
+<%= render 'questionnaire_references_modal', project: @project %>

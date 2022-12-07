@@ -1,0 +1,40 @@
+/*
+ * Public response view
+ */
+.response .ui.grid.likert-style-grid {
+  font-size: 1.1em;
+}
+.response .ui.grid.likert-style-grid .tablet.computer.only.row,
+.response .ui.grid.likert-style-grid > .row > .mobile.only.column {
+  padding-bottom: 0.3em !important;
+}
+.response .ui.grid.likert-style-grid .field.row {
+  padding-top: 0.76rem;
+  padding-bottom: 0.76rem;
+}
+.response .ui.grid.likert-style-grid .field.row,
+.response .ui.grid.likert-style-grid .tablet.computer.only.row {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 0;
+}
+.response .ui.grid.likert-style-grid .field.error.row {
+  background: #fff6f6 !important;
+  color: #9f3a38 !important;
+}
+.response .ui.grid.likert-style-grid .field.row:hover {
+  background: rgba(0,0,0,0.05) !important;
+  color: rgba(0,0,0,0.95) !important;
+}
+.response .ui.grid.likert-style-grid .field.error.row:hover {
+  background: #ffe7e7 !important;
+  color: #943634 !important;
+}
+.response .ui.grid.likert-style-grid .field.row:last-child {
+  margin-bottom: 2em;
+}
+.response .ui.grid.likert-style-grid .mobile.only.column,
+.response .ui.grid.likert-style-grid .tablet.computer.only.row {
+  font-size: 0.86em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}

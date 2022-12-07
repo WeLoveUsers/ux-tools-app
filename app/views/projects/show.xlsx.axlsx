@@ -1,0 +1,7 @@
+@wb = xlsx_package.workbook
+
+@wb.styles do |s|
+  @black_cell = s.add_style :bg_color => "00", :fg_color => "FF", :sz => 11
+  @date = s.add_style(:format_code => "dd/mm/yyyy hh:mm:ss")
+  render 'projects' + File::SEPARATOR + 'exports' + File::SEPARATOR + @project.questionnaire_id_clean, project: @project, wb: @wb, black_cell: @black_cell, date: @date
+end

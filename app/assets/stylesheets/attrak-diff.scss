@@ -1,0 +1,213 @@
+.response .ui.grid.attrakdiff-grid > .row {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.response .attrakdiff-grid .field {
+  clear: both;
+  height: 3.8em;
+  padding-top: 1.1em;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.response .attrakdiff-grid .field.error {
+  box-shadow: 0px 0px 0px #e0b4b4 inset;
+  background: #fff6f6 !important;
+  color: #9f3a38 !important;
+}
+.response .attrakdiff-grid .row:last-child .field {
+  border-bottom:0;
+  margin-bottom: 2em;
+}
+.response .attrakdiff-grid .field:hover {
+  background: rgba(0,0,0,0.05) !important;
+  color: rgba(0,0,0,0.95) !important;
+}
+.response .attrakdiff-grid .field.error:hover {
+  background: #ffe7e7 !important;
+  color: #943634 !important;
+}
+.response .attrakdiff-grid .field .label {
+  font-size: 1.1em;
+  padding-top: 0.2em;
+}
+.response .attrakdiff-grid .field .label.left-label {
+  float:left;
+  text-align: right;
+  width: 38%;
+}
+.response .attrakdiff-grid .field .label.right-label {
+  float:right;
+  text-align: left;
+  width: 38%;
+}
+.response .attrakdiff-grid .field .semantic-differential-scale {
+  width: 34%;
+  margin: auto;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1199px) {
+  .response .attrakdiff-grid .field .label.left-label { width: 36%; }
+  .response .attrakdiff-grid .field .label.right-label { width: 36%; }
+  .response .attrakdiff-grid .field .semantic-differential-scale { width: 38%; }
+}
+@media only screen and (max-width: 991px) {
+  .response .attrakdiff-grid .field .label.left-label { width: 32%; }
+  .response .attrakdiff-grid .field .label.right-label { width: 32%; }
+  .response .attrakdiff-grid .field .semantic-differential-scale { width: 46%; }
+}
+@media only screen and (max-width: 767px) {
+  .response .ui.grid.attrakdiff-grid {
+    margin: 0;
+  }
+  .response .attrakdiff-grid .field:hover,
+  .response .ui.grid.attrakdiff-grid .field.error:hover {
+    background: none !important;
+  }
+  .response .attrakdiff-grid .row {
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .response .ui.grid.attrakdiff-grid > .row > .column {
+    padding: 0;
+  }
+  .response .attrakdiff-grid .row .field {
+    height: 5em;
+    width: 100%;
+    position: relative;
+    border-bottom: none;
+  }
+
+  .response .attrakdiff-grid .field .semantic-differential-scale {
+    position: absolute;
+    left:0;
+    top:2.5em;
+    width: 100%;
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+  }
+  .response .attrakdiff-grid .field .label.left-label {
+    width: auto;
+    text-align: left;
+  }
+  .response .attrakdiff-grid .field .label.right-label {
+    width: auto;
+    text-align: right;
+  }
+  .response .attrakdiff-grid .row:first-child .field {
+    margin-top: 1em;
+  }
+  .response .attrakdiff-grid .field .label {
+    font-size: 1em;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    padding-top: 1em;
+  }
+  .response .attrakdiff-grid .row:last-child .field {
+    margin-bottom: 0;
+  }
+  .response .attrakdiff-grid .row:last-child {
+    margin-bottom: 2em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+
+  .response .attrakdiff-grid .semantic-differential-scale:before {
+    border: none;
+    content: '' !important;
+    width: 94%;
+    height: 4px;
+    line-height: 4px;
+    background-color: #D0D0D0;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top:13px;
+  }
+  .response .ui.grid.attrakdiff-grid .field.error .semantic-differential-scale:before,
+  .response .huge-radio .attrakdiff-grid .field.error .semantic-differential-scale .ui.radio.checkbox .box:before,
+  .response .huge-radio .attrakdiff-grid .field.error .semantic-differential-scale .ui.radio.checkbox label:before {
+    background-color: #9f3a38 !important;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox {
+    line-height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    /*margin-left: 5px;
+    margin-right: 5px;*/
+    padding-left: 6.7px;
+    padding-top: 6px;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox .box:before,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox label:before {
+    background-color: #D0D0D0;
+    -webkit-transition: none;
+    transition: none;
+    width: 15px;
+    height: 15px;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox .box:after,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox label:after {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  /* Radio Checkbox */
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox .box:after,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox label:after {
+    width: 30px;
+    height: 30px;
+    background-color: #4A4A4A;
+  }
+
+  /* Focus */
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus ~ .box:before,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus ~ label:before {
+    background-color: #FFFFFF;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus ~ .box:after,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus ~ label:after {
+    background-color: #4A4A4A;
+  }
+
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox .box:hover::before,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox label:hover::before {
+    background-color: #4A4A4A;
+    border: 0;
+  }
+
+  /* Active */
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:checked ~ .box:before,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:checked ~ label:before {
+    background-color: #4A4A4A;
+    border:8px #35F8B0 solid;
+    width:30px;
+    height:30px;
+    top:-7px;
+    left:-7.7px;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:checked ~ .box:after,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:checked ~ label:after {
+    background-color: #4A4A4A;
+    top:-7px;
+    left:-7.7px;
+  }
+
+  /* Active Focus */
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus:checked ~ .box:before,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus:checked ~ label:before {
+    background-color: #FFFFFF;
+  }
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus:checked ~ .box:after,
+  .response .huge-radio .attrakdiff-grid .semantic-differential-scale .ui.radio.checkbox input:focus:checked ~ label:after {
+    background-color: #4A4A4A;
+  }
+
+
+}

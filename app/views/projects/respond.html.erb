@@ -1,0 +1,30 @@
+<%- I18n.with_locale(@project.questionnaire_language_code) do %>
+  <% if !@project.is_closed %>
+    <% if @project.forbid_multiple_reponses && @has_already_responded %>
+      <div class="ui text container">
+        <div class="ui segment">
+        	<h2><%= t('.responded') %></h2>
+          <p><%= t('.responded_details') %></p>
+        </div>
+        <% if user_signed_in? && current_user == @project.user %>
+        <div class="ui tiny message">
+          <i class="info icon"></i>Pour rappel, les réponses multiples sont interdites - <a href="<%= edit_project_path(@project) %>">modifier cette option</a>
+        </div>
+        <% end %>
+      </div>
+    <% else %>
+      <% if !@showForm %>
+        <%= render 'projects' + File::SEPARATOR + 'questionnaires' + File::SEPARATOR + 'introduction', project: @project %>
+      <% else %>
+        <%= render @form, project: @project, response: @response %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="ui text container">
+      <div class="ui segment">
+      	<h2><%= t('.closed') %></h2>
+        <p><%= t('.closed_details') %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

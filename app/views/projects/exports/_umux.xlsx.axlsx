@@ -1,0 +1,45 @@
+@wb.add_worksheet(name: "Réponses") do |sheet|
+  sheet.add_row ['Légende'], :style => @black_cell
+  sheet.add_row ['Q1 :',  ResponseUmux::Q1_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first]
+  sheet.add_row ['Q2 :',  ResponseUmux::Q2_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first + " *"]
+  sheet.add_row ['Q3 :',  ResponseUmux::Q3_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first]
+  sheet.add_row ['Q4 :',  ResponseUmux::Q4_label[I18n.locale].sub('@product_type', @project.umux_product_type[I18n.locale]).upcase_first + " *"]
+
+  sheet.add_row ['']
+  sheet.add_row ["* les notes affichées sont toutes dans le même sens, que l'item soit inversé ou non :"]
+  sheet.add_row ['0 :', 'Note minimale']
+  sheet.add_row ['6 :', 'Note maximale']
+  sheet.add_row ['']
+
+  sheet.add_row ['Synthèse'], :style => @black_cell
+  sheet.add_row ['Score moyen :',  @project.umux_score[:mean]]
+  sheet.add_row ['Ecart type :',  @project.umux_score[:sd]]
+  sheet.add_row ['IC (90%) :',  @project.umux_score[:ci_90]]
+  sheet.add_row ['IC (95%) :',  @project.umux_score[:ci_95]]
+  sheet.add_row ['IC (99%) :',  @project.umux_score[:ci_99]]
+  sheet.add_row ['']
+
+
+  sheet.add_row ResponseUmux::Export_entete, :style => @black_cell
+  i = 1
+  @project.responses.order("created_at asc").each do |response|
+
+    score = Stats::UMUX::score(response, true)[:mean]
+
+    sheet.add_row [i, gender_name_for(response.gender), human_age_for(response.age),
+                      response.Q1, response.Q2, response.Q3, response.Q4,
+                      score, response.occupation, response.summary, response.ideas, response.created_at],
+                      :style => [nil, nil, nil,
+                                 nil, nil, nil, nil,
+                                 nil, nil, nil, nil, @date]
+    i = i + 1
+  end
+
+  sheet.add_row ['']
+  sheet.add_row ['Références'], :style => @black_cell
+  ResponseUmux::Infos[:bibliography].each do |s|
+    sheet.add_row [strip_tags(s.html_safe).gsub(/&amp;/, "&")]
+  end
+
+  sheet.column_widths 13, 9, 7, 5, 5, 5, 5, 20, nil
+end

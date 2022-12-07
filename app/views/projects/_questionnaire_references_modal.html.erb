@@ -1,0 +1,41 @@
+<div id="questionnaire_references_modal" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">Références et remerciements</div>
+
+  <div class="content">
+    <p>Les questionnaires proposés et les traductions (parfois libres) sont issus de travaux de recherche et d'ouvrages dont voici les références :</p>
+    <p><strong><%= ResponseAttrakDiff::Infos[:display_name] %></strong></p>
+    <ul class="ui list">
+      <% ResponseAttrakDiff::Infos[:bibliography].each do |s| %>
+      <li><%= s.html_safe %></li>
+      <% end %>
+    </ul>
+    <p><strong><%= ResponseDeep::Infos[:display_name] %></strong> (<%= ResponseDeep::Infos[:display_name_short] %>)</p>
+    <ul class="ui list">
+      <% ResponseDeep::Infos[:bibliography].each do |s| %>
+      <li><%= s.html_safe %></li>
+      <% end %>
+    </ul>
+    <p><strong><%= ResponseSu::Infos[:display_name] %></strong> (<%= ResponseSu::Infos[:display_name_short] %>)</p>
+    <ul class="ui list">
+      <% ResponseSu::Infos[:bibliography].each do |s| %>
+      <li><%= s.html_safe %></li>
+      <% end %>
+    </ul>
+    <p><strong><%= ResponseUmux::Infos[:display_name] %></strong> (<%= ResponseUmux::Infos[:display_name_short] %>)</p>
+    <ul class="ui list">
+      <% ResponseUmux::Infos[:bibliography].each do |s| %>
+      <li><%= s.html_safe %></li>
+      <% end %>
+    </ul>
+    <p><strong><%= ResponseUmuxLite::Infos[:display_name] %></strong> (<%= ResponseUmuxLite::Infos[:display_name_short] %>)</p>
+    <ul class="ui list">
+      <% ResponseUmuxLite::Infos[:bibliography].each do |s| %>
+      <li><%= s.html_safe %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="actions">
+    <div class="ui cancel button">Fermer</div>
+  </div>
+</div>
