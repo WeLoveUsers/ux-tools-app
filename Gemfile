@@ -72,16 +72,16 @@ group :test do
 end
 
 #UX-TOOLS-APP
-# gem 'cssbundling-rails'
-# gem 'jsbundling-rails'
-# gem 'jquery-rails'
 gem "pg"
 gem "rails-i18n"
 gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
 gem 'devise-i18n'
 gem 'fomantic-ui-sass'
 gem 'chartjs-ror'
-gem 'ruby-statistics'
+gem 'prime'
+gem 'distribution'
+gem 'enumerable-statistics'
 gem 'caxlsx_rails'
 gem 'acts_as_paranoid'
+gem 'pagy', '~> 5.10', '>= 5.10.1'
 gem "lograge"

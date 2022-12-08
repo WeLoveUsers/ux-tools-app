@@ -21,6 +21,7 @@
 <%= flash_messages %>
 
 <div class="ui relaxed vertically divided middle aligned grid container">
+  <div class="sixteen wide column"><%== pagy_semantic_nav(@pagy) %></div>
   <% @projects.each do |project| %>
   <a href="<%= url_for project %>" class="row">
     <div class="seven wide column">
@@ -43,4 +44,5 @@
 
   </a>
   <% end %>
+  <div class="sixteen wide column"><%== pagy_semantic_nav(@pagy) %></div>
 </div>

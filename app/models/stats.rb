@@ -25,7 +25,7 @@ module Stats
           values[:gender].push(response.gender)
         end
       end
-      if count[:age] > 0
+      if count[:age] > 0        
         data[:age]  = Helper::compute_stats_summary_for_data(values[:age], count[:age])
       end
       if count[:gender] > 0
@@ -312,7 +312,7 @@ module Stats
     # Calcule : moyenne, écart-type et intervalles de confiances (90%, 95%, 99%) pour un ensemble de données
     #
     def self.compute_stats_summary_for_data(data_array, n, round = 2)
-      data_array.to_vector(:scale)
+      
       summary = {
         mean:   0.00,
         sd:     0.00,
@@ -320,24 +320,27 @@ module Stats
         ci_95: [0.00, 0.00],
         ci_99: [0.00, 0.00]
       }
-      summary[:mean]   = data_array.mean.round(round)
-      summary[:sd]     = data_array.sd.round(round)
-      if n > 60
-        summary[:ci_90]= Statsample::SRS.mean_confidence_interval_z(data_array.mean, data_array.sd, n, 10**100, 0.9)
-        summary[:ci_95]= Statsample::SRS.mean_confidence_interval_z(data_array.mean, data_array.sd, n, 10**100, 0.95)
-        summary[:ci_99]= Statsample::SRS.mean_confidence_interval_z(data_array.mean, data_array.sd, n, 10**100, 0.99)
-      else
-        summary[:ci_90]= Statsample::SRS.mean_confidence_interval_t(data_array.mean, data_array.sd, n, 10**100, 0.9)
-        summary[:ci_95]= Statsample::SRS.mean_confidence_interval_t(data_array.mean, data_array.sd, n, 10**100, 0.95)
-        summary[:ci_99]= Statsample::SRS.mean_confidence_interval_t(data_array.mean, data_array.sd, n, 10**100, 0.99)
-      end
 
+      mean_stdev = data_array.mean_stdev
+      summary[:mean]   = mean_stdev[0].round(round)
+      summary[:sd]     = mean_stdev[1].round(round)
+      if n > 60
+        summary[:ci_90]= SRS::mean_confidence_interval_z(mean_stdev[0], mean_stdev[1], n, 10**100, 0.9)
+        summary[:ci_95]= SRS::mean_confidence_interval_z(mean_stdev[0], mean_stdev[1], n, 10**100, 0.95)
+        summary[:ci_99]= SRS::mean_confidence_interval_z(mean_stdev[0], mean_stdev[1], n, 10**100, 0.99)
+      else
+        summary[:ci_90]= SRS::mean_confidence_interval_t(mean_stdev[0], mean_stdev[1], n, 10**100, 0.9)
+        summary[:ci_95]= SRS::mean_confidence_interval_t(mean_stdev[0], mean_stdev[1], n, 10**100, 0.95)
+        summary[:ci_99]= SRS::mean_confidence_interval_t(mean_stdev[0], mean_stdev[1], n, 10**100, 0.99)
+      end
+      
       summary[:ci_90][0] = summary[:ci_90][0].round(round)
       summary[:ci_95][0] = summary[:ci_95][0].round(round)
       summary[:ci_99][0] = summary[:ci_99][0].round(round)
       summary[:ci_90][1] = summary[:ci_90][1].round(round)
       summary[:ci_95][1] = summary[:ci_95][1].round(round)
-      summary[:ci_99][1] = summary[:ci_99][1].round(round)
+      summary[:ci_99][1] = summary[:ci_99][1].round(round)      
+      
       return summary
     end
 
@@ -352,5 +355,67 @@ module Stats
     end
 
   end
+  
+  module SRS
+      
+      # Non sample fraction.
+      #
+      # 1 - sample fraction
+      def self.qf(sam , pop)
+          1-(sam.quo(pop))
+      end
+      
+
+      ########################
+      #
+      # :SECTION:  Mean stimation
+      #
+      ########################
+  
+      
+      # Standard error. Known variance, sample with replacement.
+      def self.standard_error_ksd_wr(s, sam, pop)
+          s.quo(Math::sqrt(sam)) * Math::sqrt((pop-1).quo(pop))
+      end
+      
+      # Standard error of the mean. Known variance, sample w/o replacement
+      def self.standard_error_ksd_wor(s,sam,pop)
+          s.quo(Math::sqrt(sam)) * Math::sqrt(qf(sam,pop)) 
+      end
+
+      
+      # Standard error of the mean. 
+      # Estimated variance, without replacement
+      # Cochran (1972) p.47
+      def self.standard_error_esd_wor(s,sam,pop)
+          s.quo(Math::sqrt(sam)) * Math::sqrt(qf(sam,pop))
+      end
+  
+      # Standard error of total estimation
+      
+      def self.standard_error_total(s,sam,pop)
+          pop*standard_error_esd_wor(s,sam,pop)
+      end
+  
+      # Confidence Interval using T-Student
+      # Use with n < 60
+      def self.mean_confidence_interval_t(mean,s,n_sample,n_population,margin=0.95)
+          t=Distribution::T.p_value(1-((1-margin) / 2),n_sample-1)
+          mean_confidence_interval(mean,s,n_sample,n_population,t)
+      end
+      # Confidente Interval using Z
+      # Use with n > 60
+      def self.mean_confidence_interval_z(mean,s,n_sample,n_population,margin=0.95)
+          z=Distribution::Normal.p_value(1-((1-margin) / 2))
+          mean_confidence_interval(mean,s,n_sample,n_population, z)
+      end
+      # Confidente interval using X.
+      #
+      # Better use mean_confidence_interval_z or mean_confidence_interval_t
+      def self.mean_confidence_interval(mean,s,n_sample,n_population,x)
+          range=x*standard_error_esd_wor(s,n_sample,n_population)
+          [mean-range,mean+range]
+      end
+  end    
 
 end

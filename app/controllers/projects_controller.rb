@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  
+  include Pagy::Backend
 
   before_action :authenticate_user!, except: [:respond, :response_saved]
   before_action :set_project, only: [:show, :edit, :update, :close, :open, :destroy]
@@ -17,7 +19,8 @@ class ProjectsController < ApplicationController
       'name_desc'  => 'de Z à A'
     }
     @order_by_selected_value = default
-    @projects = current_user.projects.order(created_at: :desc)
+    @pagy, @projects = pagy(current_user.projects.order(created_at: :desc))
+    # @projects = current_user.projects.order(created_at: :desc).limit(10)
     if (params.has_key?(:order_by) && whitelist.include?(params[:order_by]))
       @order_by_selected_value = params[:order_by]
       cookies[:order_projects_by] = params[:order_by]
@@ -29,13 +32,13 @@ class ProjectsController < ApplicationController
 
     case @order_by_selected_value
     when "name_asc"
-      @projects = current_user.projects.order(product_name: :asc)
+      @pagy, @projects = pagy(current_user.projects.order(product_name: :asc))
     when "name_desc"
-      @projects = current_user.projects.order(product_name: :desc)
+      @pagy, @projects = pagy(current_user.projects.order(product_name: :desc))
     when "date_asc"
-      @projects = current_user.projects.order(created_at: :asc)
+      @pagy, @projects = pagy(current_user.projects.order(created_at: :asc))
     when "date_desc"
-      @projects = current_user.projects.order(created_at: :desc)
+      @pagy, @projects = pagy(current_user.projects.order(created_at: :desc))
     end
 
   end

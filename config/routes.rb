@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :app_notifications
-
-  resources :users
   
   resources :projects
 
@@ -39,5 +37,5 @@ Rails.application.routes.draw do
   get 'r/success/:locale', to: 'projects#response_saved', as: 'project_public_response_saved'
   get 'r/:uri_token', to: 'projects#respond', as: 'project_public_respond'
 
-  root 'welcome#index'
+  root 'projects#index'
 end

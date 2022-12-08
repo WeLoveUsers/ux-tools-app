@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_action :setup_app_updates
 
   def setup_app_updates
