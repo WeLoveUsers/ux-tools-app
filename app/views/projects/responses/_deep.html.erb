@@ -8,7 +8,7 @@
 %>
 
 <%= render 'projects' + File::SEPARATOR + 'responses' + File::SEPARATOR + 'too_many_responses', project: @project %>
-
+<h1>ICI</h1>
 <table class="ui small compact celled table">
   <thead>
     <tr>
@@ -51,7 +51,7 @@
       <td><%= scores[:G5][:mean] %></td>
       <td><%= scores[:G6][:mean] %></td>
       <td class="collapsing"><%= human_date_for(response.created_at) %></td>
-      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+      <td class="action"><%= link_to "Supprimer", response_deep_path(response), data: { turbo_method: :delete }, :method => :delete %></td>
     </tr>
     <% end %>
     <%

@@ -44,7 +44,7 @@
       <td><%= score %></td>
       <td><%= grade %></td>
       <td class="collapsing"><%= human_date_for(response.created_at) %></td>
-      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+      <td class="action"><%= link_to "Supprimer", response_su_path(response), data: { turbo_method: :delete }, :method => :delete %></td>
     </tr>
     <% end %>
     <%

@@ -45,7 +45,7 @@
       <td><%= scores[:QP][:mean] %></td>
       <td><%= scores[:QH][:mean] %></td>
       <td class="collapsing"><%= human_date_for(response.created_at) %></td>
-      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+      <td class="action"><%= link_to "Supprimer", response_attrak_diff_path(response), data: { turbo_method: :delete }, :method => :delete %></td>
     </tr>
     <% end %>
     <%

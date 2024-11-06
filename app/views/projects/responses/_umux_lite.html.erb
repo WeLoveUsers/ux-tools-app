@@ -41,7 +41,7 @@
       <% if @project.ask_user_age %><td><%= human_age_for(response.age) %></td><% end %>
       <td><%= score %></td>
       <td class="collapsing"><%= human_date_for(response.created_at) %></td>
-      <td class="action"><%= link_to "Supprimer", response, method: :delete %></td>
+      <td class="action"><%= link_to "Supprimer", response_umux_lite_path(response), data: { turbo_method: :delete }, :method => :delete %></td>
     </tr>
     <% end %>
     <%
